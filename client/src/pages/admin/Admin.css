@@ -1,0 +1,272 @@
+
+/* 관리자 로그인 배경 */
+.admin-bg {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(
+    135deg,
+    #0f2027,
+    #203a43,
+    #2c5364
+  );
+}
+
+.admin-login-card {
+  width: 320px;
+  padding: 32px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+.admin-login-card h2 {
+  margin-bottom: 20px;
+}
+
+.admin-login-card input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.admin-login-card button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  background: #203a43;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.admin-login-card button:hover {
+  background: #0f2027;
+}
+.admin-main {
+  padding: 4px 16px 16px;
+}
+
+/* 헤더 고정 안정화 (이미 sticky면 생략 가능) */
+.admin-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* =========================
+   🔘 공통 입체 버튼
+========================= */
+.btn-3d {
+  padding: 6px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 3px 0 rgba(0,0,0,0.2);
+}
+
+.btn-3d:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.25);
+}
+
+/* =========================
+   🔍 조회 버튼 (파랑)
+========================= */
+.btn-search {
+  background: linear-gradient(180deg, #4f8cff, #2f6fe4);
+  color: #fff;
+}
+
+.btn-search:hover {
+  background: linear-gradient(180deg, #5a96ff, #3a78ec);
+}
+
+/* =========================
+   📄 상세 버튼 (초록)
+========================= */
+.btn-detail {
+  background: linear-gradient(180deg, #3ecf8e, #2ea06f);
+  color: #fff;
+  min-width: 56px;
+}
+
+.btn-detail:hover {
+  background: linear-gradient(180deg, #4bdc9a, #34b27c);
+}
+
+td:last-child {
+  text-align: center;
+}
+/* =========================
+   📅 필터 바 정렬
+========================= */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* 날짜 input */
+.filter-bar input[type="date"] {
+  height: 34px;
+  padding: 0 8px;
+  font-size: 14px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+}
+
+/* ~ 기호 */
+.filter-bar .date-sep {
+  margin: 0 4px;
+  font-weight: 600;
+}
+
+/* CSV 버튼 */
+.btn-csv {
+  height: 34px;
+  padding: 0 12px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  border: 1px solid #bbb;
+  background: linear-gradient(180deg, #eeeeee, #d5d5d5);
+  cursor: pointer;
+}
+
+/* 조회 버튼 높이 통일 */
+.btn-search {
+  height: 34px;
+  line-height: 34px;
+}
+/* =========================
+   ✅ 필터바 높이/정렬 보정 (추가용)
+   기존 스타일은 건드리지 않음
+========================= */
+.filter-bar input[type="date"],
+.filter-bar .btn-search,
+.filter-bar .btn-csv {
+  height: 34px;
+  box-sizing: border-box;
+}
+
+/* 버튼 내부 텍스트 수직 정렬 보정 */
+.filter-bar .btn-search,
+.filter-bar .btn-csv {
+  padding-top: 0;
+  padding-bottom: 0;
+  line-height: normal;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 날짜 input 텍스트 수직 정렬 */
+.filter-bar input[type="date"] {
+  line-height: 34px;
+}
+/* =========================
+   ◀ ▶ 페이지네이션 최종 스타일
+========================= */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* 👉 오른쪽 정렬 */
+  gap: 8px;
+  margin-top: 14px;
+  font-size: 14px;
+}
+
+/* 이전 / 다음 버튼 */
+.pagination button {
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 6px;
+  border: 1px solid #bbb;
+  background: linear-gradient(180deg, #eeeeee, #d5d5d5);
+  font-weight: 600;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: all 0.15s ease;
+}
+
+/* hover 효과 */
+.pagination button:hover:not(:disabled) {
+  background: linear-gradient(180deg, #e0e0e0, #c8c8c8);
+}
+
+/* 클릭 시 */
+.pagination button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+/* 비활성 상태 */
+.pagination button:disabled {
+  color: #aaa;
+  background: #f4f4f4;
+  border-color: #ddd;
+  cursor: not-allowed;
+}
+
+/* 페이지 정보 */
+.pagination span {
+  padding: 0 6px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* =========================
+   📱 모바일 대응
+========================= */
+@media (max-width: 600px) {
+  .pagination {
+    justify-content: center;
+    margin-top: 18px;
+  }
+}
+/* =========================
+   ◀ ▶ 페이지네이션
+========================= */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 14px;
+  font-size: 14px;
+}
+
+.pagination button {
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 6px;
+  border: 1px solid #bbb;
+  background: linear-gradient(180deg, #eeeeee, #d5d5d5);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: linear-gradient(180deg, #e0e0e0, #c8c8c8);
+}
+
+.pagination button:disabled {
+  color: #aaa;
+  background: #f4f4f4;
+  border-color: #ddd;
+  cursor: not-allowed;
+}
+
+.pagination .page-info {
+  padding: 0 6px;
+  font-weight: 600;
+}

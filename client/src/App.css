@@ -1,0 +1,17 @@
+/* ===============================
+   App.css — 앱 레이아웃 전용
+================================ */
+
+/* 전역 기본값 보강 */
+body {
+  margin: 0;
+  font-family: "Noto Sans KR", sans-serif;
+  min-width: 320px;
+}
+
+/* 앱 전체 컨텐츠 래퍼 */
+.app-content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}

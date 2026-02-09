@@ -1,0 +1,154 @@
+/* ===============================
+   🔵 Reset & Global
+================================ */
+
+/* 박스 모델 통일 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 루트 크기 고정 */
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+}
+
+/* 기본 텍스트 컬러 */
+:root {
+  color: #213547;
+}
+
+/* 링크 기본 스타일 제거 */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ===============================
+   🔵 Layout
+================================ */
+
+main {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-top: 0; /* 헤더 높이에 맞게 조절 */
+}
+
+.app-content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-top: 0; /* 헤더 실제 높이 */
+}
+
+.container {
+  padding-top: 12px;
+  background: #fff;
+}
+
+/* ===============================
+   🔵 Text / Box
+================================ */
+
+.text-box {
+  font-size: 20px;
+  margin-bottom: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  background: #f2f2f2;
+}
+
+/* ===============================
+   🔵 Image / BeforeAfter
+================================ */
+
+.image-row {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.image-box {
+  position: relative;
+  width: 90%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 30px 20px;
+
+  border: 2px solid #ff6b6b;
+  border-radius: 16px;
+  overflow: hidden;
+
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.label {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  padding: 4px 8px;
+
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border-radius: 6px;
+
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* ===============================
+   🔵 Buttons
+================================ */
+
+.btn {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #f2f2f2;
+}
+
+/* ===============================
+   🔵 Misc
+================================ */
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+}
+
+/* ===============================
+   🔒 Scrollbar Layout Shift Fix
+   (모달 클릭 시 흔들림 방지)
+================================ */
+
+html {
+  scrollbar-gutter: stable;
+}

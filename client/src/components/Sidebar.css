@@ -1,0 +1,139 @@
+/* =========================
+   오버레이 (배경 어둡게)
+========================= */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 900;
+}
+
+/* =========================
+   사이드바 본체
+========================= */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -320px;              /* 기본 숨김 */
+  width: 320px;
+  height: 100%;
+  background: linear-gradient(180deg, #ffffff, #f5f8fb);
+  padding: 20px 18px;
+
+  box-shadow: -6px 0 18px rgba(0, 0, 0, 0.25);
+  transition: right 0.35s ease;
+  z-index: 1000;
+
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.sidebar.open {
+  right: 0;
+}
+
+/* =========================
+   닫기 버튼
+========================= */
+.close-btn {
+  align-self: flex-end;
+  font-size: 28px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #444;
+}
+
+/* =========================
+   회사 정보 리스트
+========================= */
+.info-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 10px;
+  font-size: 14px;
+}
+
+.info-list li {
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.info-list strong {
+  color: #005bbb;
+}
+
+/* =========================
+   브랜드 문구
+========================= */
+.brand-philosophy {
+  margin: 12px 0 16px;
+  padding: 12px;
+  border-left: 4px solid #005bbb;
+  background: #eef5ff;
+  font-size: 14px;
+  color: #333;
+  border-radius: 6px;
+}
+
+/* =========================
+   사업자등록증 이미지
+========================= */
+.license-box {
+  margin: 10px 0 16px;
+  text-align: center;
+}
+
+.license-box img {
+  width: 100%;
+  max-width: 260px;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+/* =========================
+   구분선
+========================= */
+.sidebar hr {
+  margin: 18px 0;
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+/* =========================
+   메뉴 버튼
+========================= */
+.sidebar button {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+
+  font-size: 16px;
+  font-weight: 600;
+  color: #005bbb;
+
+  border: 2px solid #005bbb;
+  border-radius: 10px;
+  background: #ffffff;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sidebar button:hover {
+  background: #005bbb;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 91, 187, 0.35);
+}
+
+/* =========================
+   모바일 대응
+========================= */
+@media (max-width: 480px) {
+  .sidebar {
+    width: 86%;
+    right: -86%;
+  }
+}

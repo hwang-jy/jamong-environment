@@ -1,0 +1,237 @@
+/* =========================
+   우측 메뉴 버튼 (= 구름)
+========================= */
+.menu-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(8px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 0 9px;
+
+  box-shadow:
+    0 5px 14px rgba(0,0,0,0.15),
+    inset 0 1px 0 rgba(255,255,255,0.9);
+
+  transition: transform 0.2s ease;
+}
+
+.menu-btn:hover {
+  transform: scale(1.06);
+}
+
+.menu-btn span {
+  height: 3px;
+  width: 100%;
+  border-radius: 2px;
+
+  background: linear-gradient(
+    90deg,
+    #1b5e20,
+    #1e88e5
+  );
+}
+/* =========================
+   헤더 전체
+========================= */
+.main-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 50px;
+
+  background: linear-gradient(
+    135deg,
+    #e8f8f2,
+    #f4fbff
+  );
+
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.12),
+    inset 0 -1px 0 rgba(255,255,255,0.6);
+}
+
+/* 은은한 배경 효과 */
+.header-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top left,
+    rgba(46, 204, 113, 0.18),
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+/* =========================
+   내부 정렬
+========================= */
+.header-inner {
+  position: relative;
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  z-index: 5;
+}
+.header-page {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1b5e20;
+  padding-left: 10px;
+  border-left: 2px solid #4caf50;
+  white-space: nowrap;
+}
+
+/* =========================
+   좌측 로고 영역 (작게)
+========================= */
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.logo-glass {
+  padding: 4px 8px;
+  border-radius: 10px;
+
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(8px);
+
+  box-shadow:
+    0 3px 10px rgba(0,0,0,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.8);
+}
+
+.logo-glass img {
+  height: 50px;     /* ← 이 값 키우세요 */
+  width: 30px;
+  object-fit: contain;
+}
+
+/* 자몽환경 텍스트 */
+.brand-text {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+
+  background: linear-gradient(
+    90deg,
+    #1b5e20,
+    #1e88e5
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* =========================
+   가운데 문구 (한 줄)
+========================= */
+.header-slogan {
+  position: absolute;
+  pointer-events: none;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  padding: 8px 20px;
+  border-radius: 999px;
+
+  font-size: 13.5px;
+  font-weight: 700;
+  white-space: nowrap;
+
+  background: linear-gradient(
+    135deg,
+    #2ecc71,
+    #27ae60
+  );
+  color: #ffffff;
+
+  box-shadow:
+    0 6px 18px rgba(39, 174, 96, 0.35);
+
+  z-index: 2;
+}
+
+/* =========================
+   모바일 대응
+========================= */
+@media (max-width: 600px) {
+  .header-slogan {
+    display: none; /* 모바일에서는 문구 숨김 */
+  }
+
+  .admin-btn-group {
+    gap: 6px;
+  }
+}
+
+/* =========================
+   관리자 전용 버튼
+========================= */
+.admin-btn {
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 999px;  /* 알약 형태 → 헤더와 잘 어울림 */
+  border: none;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #fff;
+  transition: all 0.2s ease;
+}
+
+/* =========================
+   관리자 버튼 그룹 (가로 정렬)
+========================= */
+.admin-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;          /* 버튼 사이 간격 */
+  margin-left: 10px;
+}
+
+.admin-list {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  box-shadow: 0 3px 8px rgba(59,130,246,0.45);
+}
+
+.admin-logout {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  box-shadow: 0 3px 8px rgba(239,68,68,0.45);
+}
+
+.admin-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+.admin-btn-group {
+  display: flex;
+  gap: 8px;
+  margin-left: 16px;
+}

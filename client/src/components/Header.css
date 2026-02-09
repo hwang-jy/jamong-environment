@@ -1,0 +1,229 @@
+/* =========================
+   헤더 전체
+========================= */
+.main-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 50px;
+
+  background: linear-gradient(
+    135deg,
+    #e8f8f2,
+    #f4fbff
+  );
+
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.12),
+    inset 0 -1px 0 rgba(255,255,255,0.6);
+}
+/* =========================
+   헤더 은은한 배경 효과
+========================= */
+.header-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top left,
+    rgba(46, 204, 113, 0.18),
+    transparent 60%
+  );
+  pointer-events: none;
+}
+/* =========================
+   내부 정렬 (중앙 기준 안정)
+========================= */
+.header-inner {
+  position: relative;
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+/* =========================
+   좌측 영역
+========================= */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 5;
+}
+
+.header-page {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1b5e20;
+  padding-left: 10px;
+  border-left: 2px solid #4caf50;
+  white-space: nowrap;
+}
+/* =========================
+로고 영역 (유리 효과 ⭕)
+========================= */
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.logo-glass {
+  padding: 4px 8px;
+  border-radius: 10px;
+
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(8px);
+
+  box-shadow:
+    0 3px 10px rgba(0,0,0,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.8);
+}
+
+.logo-glass img {
+  height: 36px;   /* ⬅️ 50px → 36px (헤더 높이에 맞춤) */
+  width: auto;
+  object-fit: contain;
+}
+/* =========================
+브랜드 텍스트
+========================= */
+.brand-text {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+
+  background: linear-gradient(
+    90deg,
+    #1b5e20,
+    #1e88e5
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+/* =========================
+가운데 슬로건 (정중앙 고정)
+========================= */
+.header-slogan {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+
+  padding: 8px 20px;
+  border-radius: 999px;
+
+  font-size: 13.5px;
+  font-weight: 700;
+  white-space: nowrap;
+
+  background: linear-gradient(
+    135deg,
+    #2ecc71,
+    #27ae60
+  );
+  color: #ffffff;
+
+  box-shadow:
+    0 6px 18px rgba(39, 174, 96, 0.35);
+
+  z-index: 2;
+}
+/* =========================
+우측 메뉴 버튼 (= 구름 핵심)
+========================= */
+.menu-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(8px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 0 9px;
+
+  box-shadow:
+    0 5px 14px rgba(0,0,0,0.15),
+    inset 0 1px 0 rgba(255,255,255,0.9);
+
+  transition: transform 0.2s ease;
+}
+
+.menu-btn:hover {
+  transform: scale(1.06);
+}
+
+.menu-btn span {
+  height: 3px;
+  width: 100%;
+  border-radius: 2px;
+
+  background: linear-gradient(
+    90deg,
+    #1b5e20,
+    #1e88e5
+  );
+}
+/* =========================
+관리자 버튼 그룹 (중복 제거 완료)
+========================= */
+.admin-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 16px;
+}
+
+.admin-btn {
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: none;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #fff;
+
+  transition: all 0.2s ease;
+}
+
+.admin-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.admin-list {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  box-shadow: 0 3px 8px rgba(59,130,246,0.45);
+}
+
+.admin-logout {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  box-shadow: 0 3px 8px rgba(239,68,68,0.45);
+}
+/* =========================
+모바일 대응
+========================= */
+@media (max-width: 600px) {
+  .header-slogan {
+    display: none;
+  }
+
+  .admin-btn-group {
+    gap: 6px;
+  }
+}

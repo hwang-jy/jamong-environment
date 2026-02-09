@@ -1,0 +1,55 @@
+/* src/components/TrustBoxes.css */
+
+.trust-section {
+  max-width: 900px;
+  margin: 8px auto 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 0 20px;
+}
+
+/* 공통 박스 */
+.trust-box {
+  padding: 16px 22px;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #1f2937;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  border-left: 6px solid transparent;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* hover 효과 */
+.trust-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+}
+
+/* 개별 색상 */
+.trust-blue {
+  background: linear-gradient(135deg, #e8f1ff, #f5f9ff);
+  border-left-color: #3b82f6;
+}
+
+.trust-green {
+  background: linear-gradient(135deg, #eafaf1, #f6fffa);
+  border-left-color: #10b981;
+}
+
+.trust-orange {
+  background: linear-gradient(135deg, #fff3e8, #fff8f1);
+  border-left-color: #f97316;
+}
+
+/* 모바일 대응 */
+@media (max-width: 480px) {
+  .trust-box {
+    font-size: 15px;
+    padding: 14px 18px;
+  }
+}

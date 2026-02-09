@@ -1,0 +1,104 @@
+
+
+/* 🔹 마우스 올렸을 때 효과 */
+.box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ❌ body, html 절대 사용하지 말 것 */
+/* 페이지 전용 클래스만 사용 */
+
+.category-container {
+  max-width: 600px;
+  margin: 20px auto;
+  text-align: center;
+  font-family: "Noto Sans KR", sans-serif;
+  background: transparent;
+}
+
+.category-container h1 {
+  margin-top: 0;
+  margin-bottom: 16px; /* 아래만 우리가 통제 */
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+/* 버튼 기본 스타일 */
+.select-btn {
+  padding: 20px 40px;
+  font-size: 32px;
+  font-weight: bold;
+  border: 3px solid #0078ff;        /* 선명한 파란색 테두리 */
+  border-radius: 10px;
+  color: #003366;                   /* 짙은 파랑 글자색 (대비) */
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 120, 255, 0.2); /* 살짝 그림자 */
+  transition: 0.25s ease-in-out;
+}
+
+/* 마우스 올렸을 때 효과 */
+.select-btn:hover {
+  color: white;                     /* 글씨 흰색으로 반전 */
+  border-color: #0059b3;            /* 더 진한 테두리 */
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 90, 179, 0.4);
+}
+.service-call-box {
+  margin: 24px 0 12px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+}
+
+.service-call-box a {
+  color: #1976d2;
+  text-decoration: none;
+}
+
+.call-highlight {
+  margin: 28px auto 10px;
+  padding: 14px 24px;
+  max-width: 420px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  background: linear-gradient(135deg, #e0f2fe, #f0f9ff);
+  border-radius: 999px;
+
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255,255,255,0.8);
+}
+
+.call-icon {
+  font-size: 20px;
+}
+
+.call-label {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.call-number {
+  font-size: 20px;
+  font-weight: 800;
+  color: #2563eb;
+  letter-spacing: 0.5px;
+}
+
+/* hover */
+.call-highlight:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
+}
