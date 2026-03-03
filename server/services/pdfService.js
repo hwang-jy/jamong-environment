@@ -6,7 +6,7 @@ import fs from "fs";
 /**
  * 📄 예상 견적서 PDF 생성 (완성본)
  */
-export async function createEstimatePDF(data) {
+export function createEstimatePDF(data) {
   console.log("✅ PDF 함수 시작");
 
   const __filename = fileURLToPath(import.meta.url);
@@ -85,3 +85,5 @@ export async function createEstimatePDF(data) {
     });
   });
 }
+
+export default createEstimatePDF;
