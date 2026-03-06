@@ -8,7 +8,7 @@ export default function AdminWasteDetail() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/admin/wastes/${id}`, {
+    axios.get(`/api/admin/wastes/${id}`, {
       headers: { "x-admin-token": "admin-secret" }
     }).then(res => {
             console.log("DETAIL RESPONSE:", res.data);

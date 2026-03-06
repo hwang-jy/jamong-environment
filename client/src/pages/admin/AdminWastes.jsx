@@ -25,7 +25,7 @@ export default function AdminWastes() {
   const fetchData = async (p = 1) => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/admin/wastes",
+        "/api/admin/wastes",
         {
           headers: { "x-admin-token": "admin-secret" },
           params: {
@@ -57,7 +57,7 @@ export default function AdminWastes() {
    */
   const downloadCSV = async () => {
     const res = await axios.get(
-      "http://localhost:5000/api/admin/wastes-export",
+      "/api/admin/wastes-export",
       {
         headers: { "x-admin-token": "admin-secret" },
         params: {

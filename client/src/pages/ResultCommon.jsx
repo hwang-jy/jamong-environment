@@ -83,8 +83,18 @@ function ResultCommon({
 
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/api/wastes/estimate",
-        form
+        "/api/wastes/estimate",
+        {
+          name: form.name,
+          phone: form.phone,
+          email: form.email,
+          address: form.address_f,
+          detail_address: form.address_r,
+          gubun: form.gubun,
+          volume: form.volume_type,
+          has_elevator: form.has_elevator,
+          ladder: form.ladder
+        }
       );
 
       if (!data.ok) {
@@ -133,7 +143,7 @@ function ResultCommon({
         <h2>{title}</h2>
 
         <div className="service-call-box">
-          📞 대표전화 <a href="tel:+821040701291">010-4070-1291</a>
+          📞 대표전화 <a href="tel:+821088662305">010-8866-2305</a>
         </div>
 
         <div className="estimate-form">
@@ -259,7 +269,7 @@ function ResultCommon({
         />
       )}
 
-      <a href="tel:+821040701291" className="call-cta">
+      <a href="tel:+821088662305" className="call-cta">
         📞 전화 상담 바로 연결
       </a>
     </>

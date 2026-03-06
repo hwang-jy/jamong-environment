@@ -12,7 +12,7 @@ function WasteDetailModal({ id, onClose, onSaved }) {
     if (!id) return;
 
     axios
-      .get(`http://localhost:5000/api/admin/wastes/${id}`, {
+      .get(`/api/admin/wastes/${id}`, {
         headers: { "x-admin-token": "admin-secret" },
       })
       .then((res) => {
@@ -42,7 +42,7 @@ function WasteDetailModal({ id, onClose, onSaved }) {
 
     try {
       const res = await axios.patch(
-        `http://localhost:5000/api/admin/wastes/${id}`,
+        `/api/admin/wastes/${id}`,
         {
           status: data.status,
           final_cost:

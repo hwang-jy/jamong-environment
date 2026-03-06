@@ -50,7 +50,7 @@ const onSubmit = async (e) => {
   }
 
   const { data } = await axios.post(
-    "http://localhost:5000/api/wastes/estimate",
+    "/api/wastes/estimate",
     form
   );
 
