@@ -5,11 +5,6 @@ import axios from "axios";
  * @param {boolean} usePdf - PDF 첨부 여부
  */
 export const sendEstimateMail = async (data) => {
-  const res = await axios.post("/api/mail/estimate",
-    {
-      ...data,
-       use_pdf: usePdf,  //  PDF 선택 사항
-    }
-  );
+  const res = await axios.post("/api/mail/estimate", data);
   return res.data;
 };
