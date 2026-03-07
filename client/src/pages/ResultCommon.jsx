@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import "./ResultCommon.css";
 import BeforeAfter from "./BeforeAfter";
