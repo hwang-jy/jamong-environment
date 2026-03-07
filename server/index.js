@@ -23,7 +23,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // 미들웨어
-app.use(cors({ origin: ["http://localhost:5173"] }));
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "http://13.209.7.247",
+    "https://jamongclean.co.kr"
+  ]
+}));
 app.use(express.json());
 // 메일 Api
 app.use("/api/mail", mailRoutes);
