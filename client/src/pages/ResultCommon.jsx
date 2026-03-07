@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import axios from "axios";
+import "./ResultCommon.css";  
 import { Link } from "react-router-dom";
 import "./ResultCommon.css";
 import BeforeAfter from "./BeforeAfter";
@@ -87,10 +89,10 @@ function ResultCommon({
           name: form.name,
           phone: form.phone,
           email: form.email,
-          address: form.address_f,
-          detail_address: form.address_r,
+          address_f: form.address_f,
+          address_r: form.address_r,
           gubun: form.gubun,
-          volume: form.volume_type,
+          volume_type: form.volume_type,
           has_elevator: form.has_elevator,
           ladder: form.ladder
         }
