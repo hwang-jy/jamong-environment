@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
-import "./ResultCommon.css";  
-import { Link } from "react-router-dom";
 import "./ResultCommon.css";
+import { Link } from "react-router-dom";
 import BeforeAfter from "./BeforeAfter";
 import { sendEstimateMail } from "../api/mailApi";
 
@@ -16,10 +14,11 @@ function ResultCommon({
   volumeOptions = [],
   optionFields = [],
 }) {
+
   const [form, setForm] = useState({
     name: "",
     phone: "",
-    email: "", 
+    email: "",
     address_f: "",
     address_r: "",
     gubun,
@@ -36,6 +35,7 @@ function ResultCommon({
   ========================= */
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+
     setForm((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
@@ -43,104 +43,91 @@ function ResultCommon({
   };
 
   /* =========================
-     전화번호 전용
+     전화번호 포맷
   ========================= */
   const onPhoneChange = (e) => {
+
     if (e.nativeEvent.isComposing) return;
 
     let v = e.target.value.replace(/[^0-9]/g, "");
-    if (v.length >= 7) v = v.replace(/(\d{3})(\d{4})(\d+)/, "$1-$2-$3");
-    else if (v.length >= 3) v = v.replace(/(\d{3})(\d+)/, "$1-$2");
 
-    setForm((prev) => ({ ...prev, phone: v }));
+    if (v.length >= 7)
+      v = v.replace(/(\d{3})(\d{4})(\d+)/, "$1-$2-$3");
+    else if (v.length >= 3)
+      v = v.replace(/(\d{3})(\d+)/, "$1-$2");
+
+    setForm((prev) => ({
+      ...prev,
+      phone: v,
+    }));
   };
 
   /* =========================
      주소 검색
   ========================= */
   const onSearchAddress = () => {
+
     new window.daum.Postcode({
       oncomplete: (data) => {
-        setForm((prev) => ({ ...prev, address_f: data.address }));
-      },
+        setForm((prev) => ({
+          ...prev,
+          address_f: data.address
+        }));
+      }
     }).open();
+
   };
 
   /* =========================
      전송
   ========================= */
   const onSubmit = async () => {
-  if (!form.name || !form.phone) {
-    alert("필수 항목을 입력하세요");
-    return;
+
+    if (!form.name || !form.phone) {
+      alert("필수 항목을 입력하세요");
+      return;
     }
-      // 2️⃣ 이메일 형식 체크 (⭐ 여기!)
+
     if (form.email && !form.email.includes("@")) {
       alert("이메일 형식이 올바르지 않습니다");
       return;
     }
-    
-    console.log("🚨 전송되는 form:", form);
 
     try {
-      const { data } = await axios.post(
-        "/api/wastes/estimate",
-        {
-          name: form.name,
-          phone: form.phone,
-          email: form.email,
-          address_f: form.address_f,
-          address_r: form.address_r,
-          gubun: form.gubun,
-          volume_type: form.volume_type,
-          has_elevator: form.has_elevator,
-          ladder: form.ladder
-        }
-      );
+
+      const data = await sendEstimateMail({
+        email: form.email || null,
+        name: form.name,
+        phone: form.phone,
+        address_f: form.address_f,
+        address_r: form.address_r,
+        gubun: form.gubun,
+        volume_type: form.volume_type,
+        has_elevator: form.has_elevator,
+        ladder: form.ladder
+      });
 
       if (!data.ok) {
         alert("견적 계산 실패");
         return;
       }
 
-      // 2️⃣ 결과 표시
       setResult(data.waste);
 
-      // 3️⃣ 자동 메일 발송
-      await sendMailAfterEstimate(data.waste);
-
       alert("✅ 예상 견적 계산 및 메일 발송 완료");
+
     } catch (err) {
+
       console.error(err);
       alert("처리 중 오류가 발생했습니다");
+
     }
   };
-
-  const sendMailAfterEstimate = async (waste) => {
-  try {
-    await sendEstimateMail({
-      email: form.email || null,   // ⭐ 없으면 null
-      name: form.name,
-      phone: form.phone,
-      address_f: form.address_f,
-      address_r: form.address_r,
-      gubun: form.gubun,
-      volume_type: form.volume_type,
-      has_elevator: form.has_elevator,
-      ladder: form.ladder,
-      estimated_cost: waste.cost,
-      waste_id: waste.id,
-    });
-
-    console.log("메일 발송 완료");
-  } catch (err) {
-    console.error("메일 발송 실패", err);
-  }
-};
 
   return (
     <>
       <div className="resultA-container">
+
         <h2>{title}</h2>
 
         <div className="service-call-box">
@@ -148,8 +135,11 @@ function ResultCommon({
         </div>
 
         <div className="estimate-form">
+
           <div className="info-card">
+
             <div className="form-row">
+
               <div className="input-group">
                 <label>{nameLabel}</label>
                 <input
@@ -169,6 +159,7 @@ function ResultCommon({
                   onChange={onPhoneChange}
                 />
               </div>
+
             </div>
 
             <div className="input-group">
@@ -183,6 +174,7 @@ function ResultCommon({
             </div>
 
             <div className="address-group">
+
               <div className="input-group full">
                 <label>주소</label>
                 <input
@@ -201,12 +193,15 @@ function ResultCommon({
                   placeholder="상세주소 (선택)"
                 />
               </div>
+
             </div>
+
           </div>
 
-          {/* 🔹 요청사항 반영된 부분 */}
           <div className="input-group full volume-group">
+
             <div className="volume-grid">
+
               <span className="volume-label">
                 예상 폐기물 양 <em>(입력필수)</em> :
               </span>
@@ -218,13 +213,12 @@ function ResultCommon({
                 onChange={handleChange}
               >
                 {volumeOptions.map((v) => (
-                  <option key={v} value={v}>
-                    {v}
-                  </option>
+                  <option key={v} value={v}>{v}</option>
                 ))}
               </select>
 
               <div className="volume-options">
+
                 {optionFields.map((opt) => (
                   <label key={opt.name} className="volume-option">
                     <input
@@ -236,30 +230,45 @@ function ResultCommon({
                     {opt.label}
                   </label>
                 ))}
+
               </div>
+
             </div>
+
           </div>
 
-          <button type="button" className="submit-btn" onClick={onSubmit}>
+          <button
+            type="button"
+            className="submit-btn"
+            onClick={onSubmit}
+          >
             💰 예상금액 계산
           </button>
+
         </div>
 
         {result && (
           <div className="result-box">
+
             <h3>✅ 예상 견적 결과</h3>
+
             <p className="result-cost">
               {result.cost.toLocaleString()}원
             </p>
-            <p className="result-sub">{resultNotice}</p>
+
+            <p className="result-sub">
+              {resultNotice}
+            </p>
+
           </div>
         )}
-        {/* ⭐ 홈으로 버튼 (복구) */}
+
         <div className="back-select">
           <Link to="/" className="home-btn">
             🏠 홈으로
           </Link>
         </div>
+
       </div>
 
       {images && (
@@ -273,6 +282,7 @@ function ResultCommon({
       <a href="tel:+821088662305" className="call-cta">
         📞 전화 상담 바로 연결
       </a>
+
     </>
   );
 }
