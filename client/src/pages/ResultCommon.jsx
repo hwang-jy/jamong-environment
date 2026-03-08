@@ -3,7 +3,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "./ResultCommon.css";
 import BeforeAfter from "./BeforeAfter";
-import { sendEstimateMail } from "../api/mailApi";
 
 function ResultCommon({
   title,
@@ -29,6 +28,8 @@ function ResultCommon({
   });
 
   const [result, setResult] = useState(null);
+
+  const [loading, setLoading] = useState(false);
 
   /* =========================
      공통 change
@@ -69,9 +70,11 @@ function ResultCommon({
      전송
   ========================= */
   const onSubmit = async () => {
-  if (!form.name || !form.phone) {
-    alert("필수 항목을 입력하세요");
-    return;
+      if (loading) return;   // ⭐ 중복 클릭 방지
+         setLoading(true);
+      if (!form.name || !form.phone) {
+         alert("필수 항목을 입력하세요");
+      return;
     }
       // 2️⃣ 이메일 형식 체크 (⭐ 여기!)
     if (form.email && !form.email.includes("@")) {
@@ -89,6 +92,7 @@ function ResultCommon({
 
       if (!data.ok) {
         alert("견적 계산 실패");
+        setLoading(false);
         return;
       }
 
@@ -96,36 +100,15 @@ function ResultCommon({
       setResult(data.waste);
 
       // 3️⃣ 자동 메일 발송
-      await sendMailAfterEstimate(data.waste);
-
       alert("✅ 예상 견적 계산 및 메일 발송 완료");
     } catch (err) {
       console.error(err);
       alert("처리 중 오류가 발생했습니다");
     }
+
+     setLoading(false);
+
   };
-
-  const sendMailAfterEstimate = async (waste) => {
-  try {
-    await sendEstimateMail({
-      email: form.email || null,   // ⭐ 없으면 null
-      name: form.name,
-      phone: form.phone,
-      address_f: form.address_f,
-      address_r: form.address_r,
-      gubun: form.gubun,
-      volume_type: form.volume_type,
-      has_elevator: form.has_elevator,
-      ladder: form.ladder,
-      estimated_cost: waste.cost,
-      waste_id: waste.id,
-    });
-
-    console.log("메일 발송 완료");
-  } catch (err) {
-    console.error("메일 발송 실패", err);
-  }
-};
 
   return (
     <>
@@ -229,7 +212,8 @@ function ResultCommon({
             </div>
           </div>
 
-          <button type="button" className="submit-btn" onClick={onSubmit}>
+          <button type="button" className="submit-btn" 
+                  onClick={onSubmit} disabled={loading}>
             💰 예상금액 계산
           </button>
         </div>
