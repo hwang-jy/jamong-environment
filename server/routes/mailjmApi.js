@@ -58,7 +58,12 @@ router.post("/estimate", async (req, res) => {
       error_message: null,
     });
 
-    res.json({ ok: true });
+    res.json({ ok: true,
+       waste: {
+             id: data.waste_id,
+             cost: data.estimated_cost
+             }
+     });
 
   } catch (err) {
     await saveMailLog({

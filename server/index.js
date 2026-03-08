@@ -1,4 +1,5 @@
-require('dotenv').config();
+import dotenv from "dotenv";
+dotenv.config();
 
 import express from "express";
 import cors from "cors";
@@ -40,6 +41,10 @@ app.use("/api/admin", adminRoutes);
 // 루트 확인용
 app.get("/", (req, res) => {
   res.send("서버 OK");
+});
+
+app.get("/api/health", (req, res) => {
+  res.json({ status: "ok" });
 });
 
 // DB 연결 + 테스트   ← ⭐
