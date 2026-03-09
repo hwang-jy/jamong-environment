@@ -284,6 +284,25 @@ input[readonly] {
     0 3px 6px rgba(0, 0, 0, 0.15);
 }
 
+.kakao-cta {
+  position: fixed;
+  right: 20px;
+  bottom: 90px;
+  padding: 16px 22px;
+  border-radius: 999px;
+  background: #FEE500;
+  color: #000;
+  font-size: 18px;
+  font-weight: 900;
+  text-decoration: none;
+  z-index: 9999;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+.kakao-cta:hover {
+  transform: scale(1.05);
+}
+
 /* ===============================
    모바일 반응형 (요구사항)
 ================================ */
