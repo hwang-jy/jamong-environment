@@ -11,6 +11,10 @@ import adminRoutes from "./routes/admin.js";
 import mailRoutes from "./routes/mailjmApi.js";
 import mailResendRoutes from "./routes/mailResend.js"; 
 import { verifyMail } from "./services/mailService.js";
+import { createEstimatePDF } from "./services/pdfService.js";
+import { sendMail } from "./services/mailService.js";
+import { estimateMailAdmin } from "./templates/estimateMailAdmin.js";
+import { estimateMailUser } from "./templates/estimateMailUser.js";
 
 
 // ⭐ dotenv 이후 실행 (정상)
@@ -75,60 +79,135 @@ function calcEstimate({ volume_type, has_elevator, use_ladder_car }) {
 // wastes 테이블에 INSERT
 app.post("/api/wastes/estimate", async (req, res) => {
   try {
-    const { name, phone, address_f, address_r, volume_type, 
-            status, gubun, has_elevator, ladder,
-            photo_url} = req.body;
+
+    const { name, phone, address_f, address_r, volume_type,
+            gubun, has_elevator, ladder, photo_url, email } = req.body;
 
     if (!name || !volume_type) {
-      return res.status(400).json({ ok: false, error: "필수 값 누락" });
-    }        
-          // ✅ gubun 방어 처리
-    const allowedGubun = ["생활폐기물", "유품정리", "사업장"];
-    const safeGubun = allowedGubun.includes(gubun)
-      ? gubun
-      : "생활폐기물";
-      
+      return res.status(400).json({ ok:false, error:"필수 값 누락" });
+    }
+
+    const allowedGubun = ["생활폐기물","유품정리","사업장"];
+    const safeGubun = allowedGubun.includes(gubun) ? gubun : "생활폐기물";
+
     const cost = calcEstimate({
       volume_type,
       has_elevator,
       use_ladder_car: ladder
     });
 
-
-     // 🔒 cost NOT NULL 보호
     if (!cost || cost <= 0) {
-      return res.status(400).json({
-        ok: false,
-        error: "금액 계산 실패"
-      });
+      return res.status(400).json({ ok:false, error:"금액 계산 실패" });
     }
 
     const q = `
-      INSERT INTO wastes (name, phone, address_f, address_r,  volume_type,
-       gubun, has_elevator, ladder, status, cost, photo_url)
-      VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)
+      INSERT INTO wastes
+      (name,phone,address_f,address_r,volume_type,
+       gubun,has_elevator,ladder,status,cost,photo_url,email)
+      VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)
       RETURNING *;
     `;
-    const v = [name, 
-              phone || null,
-              address_f || null, 
-              address_r || null,
-              volume_type, 
-              safeGubun,        // ✅ 한글 그대로 저장
-              has_elevator, 
-              ladder, 
-              "최초입력",     // ⭐ 문자열은 JS에서
-              cost,
-              photo_url || null];
+
+    const v = [
+      name,
+      phone || null,
+      address_f || null,
+      address_r || null,
+      volume_type,
+      safeGubun,
+      has_elevator,
+      ladder,
+      "최초입력",
+      cost,
+      photo_url || null,
+      email || null
+    ];
+
     const { rows } = await pool.query(q, v);
-    res.json({ ok: true, waste: rows[0] });
+    const waste = rows[0];
+
+    // =========================
+    // 메일 발송
+    // =========================
+    try {
+
+      const adminHtml = estimateMailAdmin({
+        ...waste,
+        estimated_cost: waste.cost
+      });
+
+      const userHtml = estimateMailUser({
+        ...waste,
+        estimated_cost: waste.cost
+      });
+
+      // 관리자 메일
+      await sendMail({
+        to: process.env.ADMIN_MAIL,
+        subject: "[관리자] 새 견적 접수",
+        html: adminHtml
+      });
+
+      // 사용자 메일
+      if (email && email.includes("@")) {
+
+        const pdfPath = await createEstimatePDF({
+          ...waste,
+          estimated_cost: waste.cost
+        });
+
+        await sendMail({
+          to: email,
+          subject: "[자몽환경] 예상 견적 안내",
+          html: userHtml,
+          attachments: [
+            {
+              filename:"estimate.pdf",
+              path: pdfPath
+            }
+          ]
+        });
+
+      }
+
+    } catch (mailErr) {
+
+      console.error("메일 오류:", mailErr.message);
+
+    }
+
+    // 결과 반환
+    res.json({
+      ok:true,
+      waste:{
+        id:waste.id,
+        cost:waste.cost
+      }
+    });
 
   } catch (err) {
+
     console.error("❌ 서버 오류:", err.message);
-    res.status(500).json({ ok: false, error: err.message });
+
+    res.status(500).json({
+      ok:false,
+      error:err.message
+    });
+
   }
 });
 
+    // ============================
+    // 결과 반환
+    // ============================
+    res.json({
+      ok: true,
+      waste: {
+        id: waste.id,
+        cost: waste.cost
+      }
+    });
+  
 
 //   개발후 처리 할것 임시 코맨트처리 지우지 말것
 // React 정적 파일 제공
