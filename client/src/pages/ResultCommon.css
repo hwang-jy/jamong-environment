@@ -214,16 +214,20 @@ input[readonly] {
 ========================= */
 .call-cta {
   position: fixed;
-  right: 20px;
   bottom: 20px;
-  padding: 16px 22px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #1976d2, #0d47a1);
-  color: #fff;
-  font-size: 18px;
-  font-weight: 900;
+  right: 20px;
+  background: #2bb673;
+  color: white;
+  padding: 14px 18px;
+  border-radius: 30px;
+  font-weight: bold;
   text-decoration: none;
-  z-index: 9999;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+.call-cta:hover {
+  background: #239a5d;
+  transform: scale(1.05);
 }
 /* =========================
    홈으로 버튼 (마무리 CTA)

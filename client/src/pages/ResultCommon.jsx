@@ -116,7 +116,7 @@ function ResultCommon({
         <h2>{title}</h2>
 
         <div className="service-call-box">
-          📞 대표전화 <a href="tel:+821088662305">010-8866-2305</a>
+           📞 대표전화 <a href="tel:01088662305">010-8866-2305</a>
         </div>
 
         <div className="estimate-form">
@@ -242,8 +242,11 @@ function ResultCommon({
           afterImg={images.after}
         />
       )}
-
-      <a href="tel:+821088662305" className="call-cta">
+      <a
+        href="tel:01088662305"
+        onClick={() => console.log("전화 연결")}
+        className="call-cta"
+      >
         📞 전화 상담 바로 연결
       </a>
     </>
