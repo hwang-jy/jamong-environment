@@ -250,7 +250,7 @@ function ResultCommon({
         📞 전화 상담 바로 연결
       </a>
       <a
-        href="https://open.kakao.com/o/abcd1234"
+        href="https://open.kakao.com/o/plnxSxki"
         target="_blank"
         rel="noopener noreferrer"
         className="kakao-cta"
