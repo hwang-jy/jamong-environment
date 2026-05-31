@@ -2,9 +2,10 @@
    결과 카드 컨테이너
 ========================= */
 .resultA-container {
-  max-width: 720px;
+  width: 100%;
+  max-width: 1000px;
   margin: 16px auto 40px;
-  padding: 30px;
+  padding: 16px;
   border-radius: 16px;
   background: linear-gradient(145deg, #f9f9f9, #ffffff);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -48,6 +49,7 @@
 
 .input-group {
   flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
 }
@@ -307,6 +309,20 @@ input[readonly] {
    모바일 반응형 (요구사항)
 ================================ */
 @media (max-width: 640px) {
+  .form-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .resultA-container {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .info-card {
+    padding: 14px;
+  }
+
   .volume-grid {
     grid-template-columns: 1fr;
   }
@@ -319,7 +335,8 @@ input[readonly] {
     grid-column: 1;
     margin-top: 6px;
   }
-    .home-btn {
+
+  .home-btn {
     width: 100%;
     max-width: 320px;
     font-size: 18px;
