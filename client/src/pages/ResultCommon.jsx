@@ -72,14 +72,14 @@ function ResultCommon({
   new window.daum.Postcode({
     oncomplete: (data) => {
 
-      setForm((prev) => ({
-        ...prev,
-        address_f: data.address,
-      }));
+        setForm((prev) => ({
+          ...prev,
+          address_f: data.address,
+        }));
 
-    },
-  }).open();
-};
+      },
+    }).open();
+  };
   /* =========================
      전송
   ========================= */
