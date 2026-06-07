@@ -69,12 +69,6 @@ function ResultCommon({
   ========================= */
   const onSearchAddress = () => {
 
-  const wrap = document.getElementById("postcodeWrap");
-
-  wrap.style.display = "block";
-
-  const onSearchAddress = () => {
-
   new window.daum.Postcode({
     oncomplete: (data) => {
 
@@ -85,8 +79,6 @@ function ResultCommon({
 
     },
   }).open();
-
-};
 };
   /* =========================
      전송
