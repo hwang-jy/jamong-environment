@@ -73,8 +73,9 @@ function ResultCommon({
 
   wrap.style.display = "block";
 
-  new window.daum.Postcode({
+  const onSearchAddress = () => {
 
+  new window.daum.Postcode({
     oncomplete: (data) => {
 
       setForm((prev) => ({
@@ -82,13 +83,10 @@ function ResultCommon({
         address_f: data.address,
       }));
 
-      wrap.style.display = "none";
     },
+  }).open();
 
-    width: "100%",
-    height: "100%",
-
-  }).embed(wrap);
+};
 };
   /* =========================
      전송
@@ -338,13 +336,6 @@ function ResultCommon({
       {/* 전화 버튼 */}
       <div className="floating-consult">
         <a
-          href="tel:01088662305"
-          className="call-btn"
-        >
-          📞 전화상담
-        </a>
-
-        <a
           href="https://open.kakao.com/o/gM7rznxi"
           target="_blank"
           rel="noopener noreferrer"
@@ -355,19 +346,6 @@ function ResultCommon({
 
       </div>
 
-       <div
-          id="postcodeWrap"
-          style={{
-            display: "none",
-            width: "100%",
-            height: "500px",
-            marginTop: "10px",
-            border: "1px solid #ddd",
-            borderRadius: "12px",
-            overflow: "hidden",
-            background: "#fff",
-          }}
-        ></div>
     </>
   );
 }
