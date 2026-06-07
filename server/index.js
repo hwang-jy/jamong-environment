@@ -197,18 +197,6 @@ app.post("/api/wastes/estimate", async (req, res) => {
   }
 });
 
-    // ============================
-    // 결과 반환
-    // ============================
-    res.json({
-      ok: true,
-      waste: {
-        id: waste.id,
-        cost: waste.cost
-      }
-    });
-  
-
 //   개발후 처리 할것 임시 코맨트처리 지우지 말것
 // React 정적 파일 제공
 // app.use(express.static(path.join(__dirname, "../client/dist")));

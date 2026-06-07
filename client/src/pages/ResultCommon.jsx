@@ -336,23 +336,24 @@ function ResultCommon({
       )}
 
       {/* 전화 버튼 */}
-      <a
-        href="tel:01088662305"
-        onClick={() => console.log("전화 연결")}
-        className="call-cta"
-      >
-        📞 전화 상담 바로 연결
-      </a>
+      <div className="floating-consult">
+        <a
+          href="tel:01088662305"
+          className="call-btn"
+        >
+          📞 전화상담
+        </a>
 
-      {/* 카카오 버튼 */}
-      <a
-        href="https://open.kakao.com/o/gM7rznxi"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="kakao-cta"
-      >
-        💬 카카오 상담
-      </a>
+        <a
+          href="https://open.kakao.com/o/gM7rznxi"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="kakao-btn"
+        >
+          💬 카카오상담
+        </a>
+
+      </div>
 
        <div
           id="postcodeWrap"
