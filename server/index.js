@@ -6,6 +6,7 @@ import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
 
+import { saveMailLog } from "./services/mailLogService.js";
 import pool from "./db.js";
 import adminRoutes from "./routes/admin.js";
 import mailRoutes from "./routes/mailjmApi.js";
@@ -147,7 +148,17 @@ app.post("/api/wastes/estimate", async (req, res) => {
         subject: "[관리자] 새 견적 접수",
         html: adminHtml
       });
-
+      // ------------------------------------
+      await saveMailLog({
+        mail_type: "admin",
+        to_email: process.env.ADMIN_MAIL,
+        admin_email: process.env.ADMIN_MAIL,
+        waste_id: waste.id,
+        estimated_cost: waste.cost,
+        success: true,
+        error_message: null,
+      });
+      // ---------------------------------------
       // 사용자 메일
       if (email && email.includes("@")) {
 
@@ -167,7 +178,16 @@ app.post("/api/wastes/estimate", async (req, res) => {
             }
           ]
         });
-
+        
+        await saveMailLog({
+          mail_type: "user",
+          to_email: email,
+          admin_email: process.env.ADMIN_MAIL,
+          waste_id: waste.id,
+          estimated_cost: waste.cost,
+          success: true,
+          error_message: null,
+        });
       }
 
     } catch (mailErr) {
