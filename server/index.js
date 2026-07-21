@@ -101,10 +101,58 @@ app.post("/api/wastes/estimate", async (req, res) => {
       return res.status(400).json({ ok:false, error:"금액 계산 실패" });
     }
 
+    // =========================
+    // 최근 1분 이내 동일 접수 확인
+    // =========================
+    const duplicateResult = await pool.query(
+      `
+      SELECT *
+      FROM wastes
+      WHERE name = $1
+        AND phone IS NOT DISTINCT FROM $2
+        AND address_f IS NOT DISTINCT FROM $3
+        AND address_r IS NOT DISTINCT FROM $4
+        AND volume_type = $5
+        AND gubun = $6
+        AND has_elevator IS NOT DISTINCT FROM $7
+        AND ladder IS NOT DISTINCT FROM $8
+        AND cost = $9
+        AND created_at >= NOW() - INTERVAL '1 minute'
+      ORDER BY id DESC
+      LIMIT 1
+      `,
+      [
+        name,
+        phone || null,
+        address_f || null,
+        address_r || null,
+        volume_type,
+        safeGubun,
+        Boolean(has_elevator),
+        Boolean(ladder),
+        cost
+      ]
+    );
+
+    if (duplicateResult.rows.length > 0) {
+      const existingWaste = duplicateResult.rows[0];
+
+      return res.json({
+        ok: true,
+        duplicate: true,
+        message: "이미 동일한 내용으로 접수되었습니다.",
+        waste: {
+          id: existingWaste.id,
+          cost: existingWaste.cost
+        }
+      });
+    }
+
+    // 신규 접수 저장
     const q = `
       INSERT INTO wastes
       (name,phone,address_f,address_r,volume_type,
-       gubun,has_elevator,ladder,status,cost,photo_url,email)
+      gubun,has_elevator,ladder,status,cost,photo_url,email)
       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)
       RETURNING *;
     `;
