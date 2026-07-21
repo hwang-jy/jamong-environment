@@ -139,8 +139,8 @@ function ResultCommon({
 
         <div className="service-call-box">
           📞 대표전화
-          <a href="tel:01088662305">
-            010-8866-2305
+          <a href="tel:01040701291">
+            010-4070-1291
           </a>
         </div>
 
