@@ -159,6 +159,12 @@
   text-align: center;
 }
 
+.final-cost {
+  color: #0066dd;
+  font-weight: 700;
+  background-color: #eef6ff;
+}
+
 /* =========================
    📱 모바일 관리 컬럼 고정 (완성형)
 ========================= */

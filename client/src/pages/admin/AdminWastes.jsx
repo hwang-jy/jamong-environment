@@ -182,11 +182,17 @@ export default function AdminWastes() {
                     ? row.cost.toLocaleString() + "원" : "-"}
                 </td>
 
-                <td className="col-final">
+                <td
+                  className={
+                    row.final_cost != null && Number(row.final_cost) > 0
+                      ? "col-final final-cost"
+                      : "col-final"
+                  }
+                >
                   {row.final_cost != null
-                    ? row.final_cost.toLocaleString() + "원"
+                    ? Number(row.final_cost).toLocaleString() + "원"
                     : "-"}
-                </td>
+                </td> 
 
                 <td className="col-date">
                   {row.created_at
