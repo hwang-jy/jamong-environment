@@ -54,7 +54,7 @@ function WasteDetailModal({ id, onClose, onSaved }) {
       );
 
       if (res.data.ok) {
-        alert("저장되었습니다");
+        // alert("저장되었습니다");
         onSaved();
       }
     } catch (e) {

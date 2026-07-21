@@ -118,7 +118,7 @@ function ResultCommon({
 
       setResult(data.waste);
 
-      alert("✅ 예상 견적 계산 및 메일 발송 완료");
+      //  alert("✅ 예상 견적 계산 및 메일 발송 완료");
 
     } catch (err) {
 
