@@ -165,6 +165,41 @@
   background-color: #eef6ff;
 }
 
+/* 구분 칸 왼쪽 정렬 */
+.admin-table td.col-gubun {
+  text-align: left;
+  padding-left: 16px;
+}
+
+/* 구분 배지 공통 */
+.gubun-badge {
+  display: inline-block;
+  min-width: 130px;
+  padding: 5px 12px;
+  border-radius: 16px;
+  box-sizing: border-box;
+  text-align: left;
+  font-weight: 600;
+}
+
+/* A: 생활폐기물 */
+.gubun-a {
+  color: #16803a;
+  background-color: #e5f6e9;
+}
+
+/* B: 유품정리 */
+.gubun-b {
+  color: #a95600;
+  background-color: #fff0d9;
+}
+
+/* C: 사업장 */
+.gubun-c {
+  color: #1565c0;
+  background-color: #e6f0ff;
+}
+
 /* =========================
    📱 모바일 관리 컬럼 고정 (완성형)
 ========================= */

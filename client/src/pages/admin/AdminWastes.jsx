@@ -164,7 +164,19 @@ export default function AdminWastes() {
                 </td>
 
                 <td className="col-gubun">
-                  {gubunLabels[row.gubun] || row.gubun || "-"}
+                  <span
+                    className={`gubun-badge ${
+                      row.gubun === "생활폐기물"
+                        ? "gubun-a"
+                        : row.gubun === "유품정리"
+                        ? "gubun-b"
+                        : row.gubun === "사업장"
+                        ? "gubun-c"
+                        : ""
+                    }`}
+                  >
+                    {gubunLabels[row.gubun] || row.gubun || "-"}
+                  </span>
                 </td>
 
                 <td className="col-status">
