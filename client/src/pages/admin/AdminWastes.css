@@ -152,6 +152,13 @@
   gap: 14px;
 }
 
+.col-gubun {
+  width: 150px;
+  min-width: 150px;
+  white-space: nowrap;
+  text-align: center;
+}
+
 /* =========================
    📱 모바일 관리 컬럼 고정 (완성형)
 ========================= */

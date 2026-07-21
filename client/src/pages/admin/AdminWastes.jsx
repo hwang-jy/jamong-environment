@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import WasteDetailModal from "./WasteDetailModal";
 import "./AdminWastes.css";
+
+const gubunLabels = {
+  생활폐기물: "A: 생활폐기물",
+  유품정리: "B: 유품정리",
+  사업장: "C: 사업장",
+};
 
 export default function AdminWastes() {
   const [list, setList] = useState([]);
@@ -10,13 +15,20 @@ export default function AdminWastes() {
   const [total, setTotal] = useState(0);
 
   // 📅 날짜 필터
-  const [fromDate, setFromDate] = useState("");
-  const [toDate, setToDate] = useState("");
+  const [fromDate, setFromDate] = useState(() => {
+  const today = new Date();
+  const from = new Date(today);
+  from.setDate(today.getDate() - 7);
+  return from.toISOString().slice(0, 10);
+  });
+
+  const [toDate, setToDate] = useState(() => {
+    return new Date().toISOString().slice(0, 10);
+  });
 
   const [selectedId, setSelectedId] = useState(null);
 
   const limit = 10;
-  const nav = useNavigate();
 
   const totalPages = Math.max(1, Math.ceil((total || 0) / limit));
   /**
@@ -80,11 +92,11 @@ export default function AdminWastes() {
    */
   useEffect(() => {
     fetchData(1);
-  }, [fromDate, toDate]);
+  }, []);
 
-useEffect(() => {
-  console.log("selectedId:", selectedId);
-}, [selectedId]);
+  useEffect(() => {
+    console.log("selectedId:", selectedId);
+  }, [selectedId]);
 
   return (
     <>
@@ -124,6 +136,7 @@ useEffect(() => {
             <tr>
               <th className="col-name">이름</th>
               <th className="col-phone">연락처</th>
+              <th className="col-gubun">구분</th>
               <th className="col-status">상태</th>
               <th className="col-cost">예상금액</th>
               <th className="col-final">확정금액</th>
@@ -136,7 +149,7 @@ useEffect(() => {
           <tbody>
             {Array.isArray(list) && list.length === 0 && (
               <tr>
-                <td colSpan="7" align="center">
+                <td colSpan="8" align="center">
                   데이터 없음
                 </td>
               </tr>
@@ -149,27 +162,35 @@ useEffect(() => {
                 <td className="col-phone">
                   {row.phone}
                 </td>
-              <td className="col-status">
-              <span
-                className={`status-badge ${
-                  typeof row.status === "string" ? row.status : ""
-                }`}
-              >
-                  {row.status}
-                </span>
-              </td>
+
+                <td className="col-gubun">
+                  {gubunLabels[row.gubun] || row.gubun || "-"}
+                </td>
+
+                <td className="col-status">
+                  <span
+                    className={`status-badge ${
+                      typeof row.status === "string" ? row.status : ""
+                    }`}
+                  >
+                      {row.status}
+                    </span>
+                </td>
 
                 <td className="col-cost">
-                  {row.cost ? row.cost.toLocaleString() + "원" : "-"}
+                  {row.cost != null
+                    ? row.cost.toLocaleString() + "원" : "-"}
                 </td>
 
                 <td className="col-final">
-                  {row.final_cost ? row.final_cost.toLocaleString() + "원" : "-"}
+                  {row.final_cost != null
+                    ? row.final_cost.toLocaleString() + "원"
+                    : "-"}
                 </td>
 
                 <td className="col-date">
                   {row.created_at
-                    ? new Date(row.created_at).toLocaleDateString("ko-KR")
+                    ? new Date(row.created_at).toLocaleString("ko-KR")
                     : "-"}
                 </td>
 
@@ -189,7 +210,7 @@ useEffect(() => {
         </table>
       </div>
 
-      {selectedId && (
+      {selectedId !== null && (  
             <WasteDetailModal
               id={selectedId}
               onClose={() => setSelectedId(null)}

@@ -67,6 +67,7 @@ router.get("/wastes", async (req, res) => {
         id,
         name,
         phone,
+        gubun,
         status,
         cost,
         final_cost,
