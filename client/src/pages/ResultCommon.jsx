@@ -64,22 +64,32 @@ function ResultCommon({
       phone: v,
     }));
   };
+  
   /* =========================
      주소 검색
   ========================= */
   const onSearchAddress = () => {
 
-  new window.daum.Postcode({
-    oncomplete: (data) => {
+    const wrap = document.getElementById("postcode-wrap");
+
+    wrap.style.display = "block";
+
+    new window.daum.Postcode({
+
+      oncomplete: (data) => {
 
         setForm((prev) => ({
           ...prev,
           address_f: data.address,
         }));
 
-      },
-    }).open();
+        wrap.style.display = "none";
+      }
+
+    }).embed(wrap);
+
   };
+
   /* =========================
      전송
   ========================= */
@@ -206,6 +216,17 @@ function ResultCommon({
                   onClick={onSearchAddress}
                 />
 
+                <div
+                  id="postcode-wrap"
+                  style={{
+                    display: "none",
+                    width: "100%",
+                    height: "500px",
+                    marginTop: "10px",
+                    border: "1px solid #ddd",
+                  }}
+                ></div>
+
               </div>
 
               <div className="input-group full">
@@ -281,7 +302,7 @@ function ResultCommon({
             onClick={onSubmit}
             disabled={loading}
           >
-            💰 예상금액 계산
+            {loading ? "계산 중..." : "💰 예상금액 계산"}
           </button>
 
         </div>
