@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./ResultCommon.css";
@@ -31,6 +31,7 @@ function ResultCommon({
   const [result, setResult] = useState(null);
 
   const [loading, setLoading] = useState(false);
+  const [showPostcode, setShowPostcode] = useState(false);
 
   /* =========================
      공통 change
@@ -64,15 +65,16 @@ function ResultCommon({
       phone: v,
     }));
   };
-  
+
   /* =========================
      주소 검색
   ========================= */
-  const onSearchAddress = () => {
+
+  useEffect(() => {
+
+    if (!showPostcode) return;
 
     const wrap = document.getElementById("postcode-wrap");
-
-    wrap.style.display = "block";
 
     new window.daum.Postcode({
 
@@ -83,11 +85,16 @@ function ResultCommon({
           address_f: data.address,
         }));
 
-        wrap.style.display = "none";
+        setShowPostcode(false);
+
       }
 
     }).embed(wrap);
 
+  }, [showPostcode]);
+
+  const onSearchAddress = () => {
+      setShowPostcode(true);
   };
 
   /* =========================
@@ -215,17 +222,6 @@ function ResultCommon({
                   readOnly
                   onClick={onSearchAddress}
                 />
-
-                <div
-                  id="postcode-wrap"
-                  style={{
-                    display: "none",
-                    width: "100%",
-                    height: "500px",
-                    marginTop: "10px",
-                    border: "1px solid #ddd",
-                  }}
-                ></div>
 
               </div>
 
@@ -358,6 +354,30 @@ function ResultCommon({
         </a>
 
       </div>
+
+      {showPostcode && (
+        <div className="postcode-modal">
+
+          <div className="postcode-box">
+
+            <button
+              className="postcode-close"
+              onClick={() => setShowPostcode(false)}
+            >
+              ✕
+            </button>
+
+            <div
+              id="postcode-wrap"
+              style={{
+                width: "100%",
+                height: "500px",
+              }}
+            ></div>
+
+          </div>
+        </div>
+      )}
 
     </>
   );
