@@ -25,6 +25,8 @@ router.post("/estimate", async (req, res) => {
     /* =========================
        ✅ 관리자 메일 (PDF ❌)
     ========================= */
+    console.log("ADMIN_MAIL =", adminEmail);
+
     await sendMail({
       to: adminEmail,
       subject: "[관리자] 새 견적 접수",
@@ -35,6 +37,9 @@ router.post("/estimate", async (req, res) => {
        ✅ 유저 메일 (PDF ⭕)
     ========================= */
     if (data.email && data.email.includes("@")) {
+
+      console.log("USER EMAIL =", data.email);
+
       // ⭐ 여기서만 PDF 생성
       pdfPath = await createEstimatePDF(data);
 
@@ -66,6 +71,9 @@ router.post("/estimate", async (req, res) => {
      });
 
   } catch (err) {
+
+    console.error("메일 오류:", err);
+
     await saveMailLog({
       mail_type: "estimate",
       to_email: data.email ?? null,
