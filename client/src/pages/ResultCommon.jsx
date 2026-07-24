@@ -342,7 +342,7 @@ function ResultCommon({
 
       )}
 
-      {/* 전화 버튼 */}
+      {/* 카카오 버튼 */}
       <div className="floating-consult">
         <a
           href="https://open.kakao.com/o/gM7rznxi"
@@ -371,7 +371,7 @@ function ResultCommon({
               id="postcode-wrap"
               style={{
                 width: "100%",
-                height: "500px",
+                height: "100%",
               }}
             ></div>
 

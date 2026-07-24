@@ -329,11 +329,11 @@ input[readonly] {
     align-items:center;
     z-index:9999;
 }
-
 .postcode-box{
     width:95%;
     max-width:500px;
-    height:560px;
+    height:85vh;
+    max-height:600px;
     background:#fff;
     border-radius:10px;
     overflow:hidden;
