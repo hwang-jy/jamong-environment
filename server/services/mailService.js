@@ -26,6 +26,13 @@ export async function verifyMail() {
  * 메일 발송
  */
 export async function sendMail({ to, subject, html, attachments = [] }) {
+
+  console.log("================================");
+  console.log("TO =", to);
+  console.log("FROM =", process.env.NAVER_MAIL_USER);
+  console.log("SUBJECT =", subject);
+  console.log("================================");
+
   return transporter.sendMail({
     from: `"자몽환경" <${process.env.NAVER_MAIL_USER}>`,
     to,
