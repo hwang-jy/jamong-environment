@@ -119,6 +119,7 @@ function ResultCommon({
     }
 
     console.log("🚨 전송되는 form:", form);
+    alert(JSON.stringify(form));
 
     try {
 

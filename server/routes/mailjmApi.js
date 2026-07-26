@@ -43,14 +43,22 @@ router.post("/estimate", async (req, res) => {
       // ⭐ 여기서만 PDF 생성
       pdfPath = await createEstimatePDF(data);
 
-      await sendMail({
-        to: data.email,
-        subject: "[자몽환경] 예상 견적 안내",
-        html: userHtml,
-        attachments: [
-          { filename: "estimate.pdf", path: pdfPath },
-        ],
-      });
+      try {      
+        await sendMail({
+          to: data.email,
+          subject: "[자몽환경] 예상 견적 안내",
+          html: userHtml,
+          attachments: [
+            { filename: "estimate.pdf", path: pdfPath },
+          ],
+        });
+      } catch (err) {
+
+          console.error("❌ USER MAIL ERROR");
+          console.error(err);
+
+          throw err;
+        }
     }
 
     await saveMailLog({
