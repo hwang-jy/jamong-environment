@@ -178,6 +178,7 @@ app.post("/api/wastes/estimate", async (req, res) => {
     // =========================
     // 메일 발송
     // =========================
+
     try {
 
       const adminHtml = estimateMailAdmin({
@@ -196,6 +197,7 @@ app.post("/api/wastes/estimate", async (req, res) => {
         subject: "[관리자] 새 견적 접수",
         html: adminHtml
       });
+
       // ------------------------------------
       await saveMailLog({
         mail_type: "admin",
@@ -240,8 +242,8 @@ app.post("/api/wastes/estimate", async (req, res) => {
 
     } catch (mailErr) {
 
-      console.error("메일 오류:", mailErr.message);
-
+      console.error("메일 오류");
+      console.error(mailErr);
     }
 
     // 결과 반환

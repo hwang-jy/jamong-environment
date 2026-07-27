@@ -32,10 +32,6 @@ function WasteDetailModal({ id, onClose, onSaved }) {
 
   const handleSave = async () => {
 
-      console.log("handleSave 실행");
-
-      alert("여기까지 왔습니다");
-
       // ✅ 작업완료인데 확정금액 없음 → 차단
     if (
       data.status === "작업완료" &&

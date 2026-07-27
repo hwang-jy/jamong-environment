@@ -49,9 +49,6 @@ export default function AdminWastes() {
         }
       );
 
-    console.log("📦 API 응답:", res.data); // 🔥 이거 추가
-
-
       if (res.data?.ok) {
           setList(Array.isArray(res.data.list) ? res.data.list : []);
           setTotal(typeof res.data.total === "number" ? res.data.total : 0);
@@ -93,10 +90,6 @@ export default function AdminWastes() {
   useEffect(() => {
     fetchData(1);
   }, []);
-
-  useEffect(() => {
-    console.log("selectedId:", selectedId);
-  }, [selectedId]);
 
   return (
     <>

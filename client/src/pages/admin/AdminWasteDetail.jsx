@@ -11,7 +11,6 @@ export default function AdminWasteDetail() {
     axios.get(`/api/admin/wastes/${id}`, {
       headers: { "x-admin-token": "admin-secret" }
     }).then(res => {
-            console.log("DETAIL RESPONSE:", res.data);
             setData(res.data.waste);
             }).catch(err => {
             console.error("❌ 상세 조회 실패", err);
