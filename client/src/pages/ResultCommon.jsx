@@ -359,7 +359,7 @@ function ResultCommon({
           className="kakao-btn"
           onClick={() => setShowKakaoGuide(true)}
         >
-          💬 카카오상담
+          💬 최종 견적 상담
         </button>
       </div>
 
@@ -369,21 +369,26 @@ function ResultCommon({
 
             <div className="kakao-guide-box">
 
-              <h2>카카오 상담 안내</h2>
+              <h2>최종 견적 상담 안내</h2>
 
               <p>
                 예상 견적을 확인하셨습니다.
               </p>
 
               <p>
-                사진 <strong>2~3장</strong>을 보내주시면
-                최종 견적을 안내해드립니다.
+                보다 정확한 최종 견적을 위해
+                <strong> 작업 사진 2~3장</strong>을 보내주세요.
+              </p>
+
+              <p>
+                상담원이 확인 후 
+                빠르게 최종 견적을 안내해드립니다.
               </p>
 
               <div className="guide-list">
-                <p>✅ 예상 견적 확인</p>
-                <p>✅ 사진 2~3장 전송</p>
-                <p>✅ 상담원과 1:1 상담</p>
+                 <p>✅ 작업 사진 2~3장 준비</p>
+                <p>✅ 카카오 상담방 입장</p>
+                <p>✅ 상담원이 최종 견적 안내</p>
               </div>
 
               <div className="guide-buttons">
@@ -391,14 +396,15 @@ function ResultCommon({
                 <button
                   className="guide-start-btn"
                   onClick={() => {
+                    setShowKakaoGuide(false);
+
                     window.open(
                       "https://open.kakao.com/o/gM7rznxi",
                       "_blank"
                     );
-                    setShowKakaoGuide(false);
                   }}
                 >
-                  카카오 상담 시작
+                  카카오 상담방 입장
                 </button>
 
                 <button
