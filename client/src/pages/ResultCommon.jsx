@@ -319,7 +319,6 @@ function ResultCommon({
                     marginTop: "10px"
                   }}
                 >
-                  console.log("사다리차 사용 시 추가금액 발생 안내");
                   ※ 사다리차 사용 시 추가금액이 발생할 수 있습니다.
                 </p>
               )}
