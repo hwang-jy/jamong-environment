@@ -62,17 +62,16 @@ pool.query("select 1")
 .catch(err => console.error("❌ DB 쿼리 테스트 실패", err.message));
 
 // 견적 계산 함수
-function calcEstimate({ volume_type, has_elevator, use_ladder_car }) {
+function calcEstimate({ volume_type}) {
   let base = 0;
   switch (volume_type) {
-    case "소량": base = 50000; break;
-    case "반차": base = 250000; break;
-    case "1톤": base = 420000; break;
-    case "두차": base = 840000; break;
+    case "소량": base = 70000; break;
+    case "반차": base = 300000; break;
+    case "1톤": base = 480000; break;
+    case "두차": base = 850000; break;
     default: base = 0;
   }
-  if (has_elevator) base += 10;
-  if (use_ladder_car) base += 25000;
+ 
   return base;
 }
 
@@ -92,9 +91,7 @@ app.post("/api/wastes/estimate", async (req, res) => {
     const safeGubun = allowedGubun.includes(gubun) ? gubun : "생활폐기물";
 
     const cost = calcEstimate({
-      volume_type,
-      has_elevator,
-      use_ladder_car: ladder
+      volume_type
     });
 
     if (!cost || cost <= 0) {

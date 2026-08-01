@@ -25,6 +25,12 @@ export function estimateMailUser(data) {
       ※ 실제 작업 환경에 따라 금액은 달라질 수 있습니다.
     </p>
 
+    ${data.ladder ? `
+      <p style="color:red; font-weight:bold;">
+        ※ 사다리차 사용 시 추가금액이 발생할 수 있습니다.
+      </p>
+      ` : ""}
+
     <hr/>
 
     <h3>☎️ 문의 및 상담</h3>

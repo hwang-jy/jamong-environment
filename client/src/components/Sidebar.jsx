@@ -18,6 +18,15 @@ function Sidebar({ open, onClose }) {
       <div className="overlay" onClick={onClose} />
 
       <aside className="sidebar open">
+          <button
+            type="button"
+            className="sidebar-close"
+            onClick={onClose}
+            aria-label="닫기"
+          >
+            ✕
+          </button>
+
         {/* 회사 정보 */}
         <ul className="info-list">
           <li><strong>대표:</strong> 김진태</li>

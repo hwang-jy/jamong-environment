@@ -72,6 +72,19 @@ export function createEstimatePDF(data) {
         { align: "center" }
       );
 
+      // 사다리차 안내 문구
+      if (data?.ladder) {
+        doc.moveDown();
+
+        doc
+          .fillColor("red")
+          .fontSize(11)
+          .text(
+            "※ 사다리차 사용 시 추가금액이 발생할 수 있습니다.",
+            { align: "center" }
+          );
+      }
+
     doc.end();
 
     // ⭐⭐⭐ 여기서 핵심

@@ -32,6 +32,12 @@ export function estimateMailAdmin(data) {
       ${cost} 원
     </p>
 
+    ${data.ladder ? `
+      <p style="color:#d32f2f; font-weight:bold;">
+        ※ 사다리차 사용 시 추가금액이 발생할 수 있습니다.
+      </p>
+      ` : ""}
+
     <hr/>
     <p style="color:#666">
       ※ 관리자 확인 후 상태 변경 및 연락 진행

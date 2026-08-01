@@ -311,6 +311,18 @@ function ResultCommon({
               {result.cost.toLocaleString()}원
             </p>
 
+              {form.ladder && (
+                <p
+                  style={{
+                    color: "red",
+                    fontWeight: "bold",
+                    marginTop: "10px"
+                  }}
+                >
+                  ※ 사다리차 사용 시 추가금액이 발생할 수 있습니다.
+                </p>
+              )}
+
             <p className="result-sub">
               {resultNotice}
             </p>
