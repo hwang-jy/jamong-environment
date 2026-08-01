@@ -217,7 +217,7 @@ input[readonly] {
 .floating-consult {
   position: fixed;
   right: 20px;
-  bottom: 20px;
+  bottom: 40px;
 
   display: flex;
   flex-direction: column;
@@ -427,8 +427,8 @@ input[readonly] {
 ================================ */
 @media (max-width: 640px) {
     .floating-consult {
-    right: 12px;
-    bottom: 80px;
+    right: 16px;
+    bottom: 90px;
   }
   .form-row {
     flex-direction: column;
