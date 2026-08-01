@@ -32,6 +32,7 @@ function ResultCommon({
 
   const [loading, setLoading] = useState(false);
   const [showPostcode, setShowPostcode] = useState(false);
+  const [showKakaoGuide, setShowKakaoGuide] = useState(false);
 
   /* =========================
      공통 change
@@ -354,16 +355,65 @@ function ResultCommon({
 
       {/* 카카오 버튼 */}
       <div className="floating-consult">
-        <a
-          href="https://open.kakao.com/o/gM7rznxi"
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
           className="kakao-btn"
+          onClick={() => setShowKakaoGuide(true)}
         >
           💬 카카오상담
-        </a>
-
+        </button>
       </div>
+
+      {/* 카카오 상담 안내 */}
+        {showKakaoGuide && (
+          <div className="kakao-guide-modal">
+
+            <div className="kakao-guide-box">
+
+              <h2>카카오 상담 안내</h2>
+
+              <p>
+                예상 견적을 확인하셨습니다.
+              </p>
+
+              <p>
+                사진 <strong>2~3장</strong>을 보내주시면
+                최종 견적을 안내해드립니다.
+              </p>
+
+              <div className="guide-list">
+                <p>✅ 예상 견적 확인</p>
+                <p>✅ 사진 2~3장 전송</p>
+                <p>✅ 상담원과 1:1 상담</p>
+              </div>
+
+              <div className="guide-buttons">
+
+                <button
+                  className="guide-start-btn"
+                  onClick={() => {
+                    window.open(
+                      "https://open.kakao.com/o/gM7rznxi",
+                      "_blank"
+                    );
+                    setShowKakaoGuide(false);
+                  }}
+                >
+                  카카오 상담 시작
+                </button>
+
+                <button
+                  className="guide-close-btn"
+                  onClick={() => setShowKakaoGuide(false)}
+                >
+                  닫기
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+        )}
 
       {showPostcode && (
         <div className="postcode-modal">
