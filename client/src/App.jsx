@@ -10,6 +10,7 @@ import CompanyIntro from "./pages/Company/CompanyIntro";
 import ResultA from "./pages/ResultA";
 import ResultB from "./pages/ResultB";
 import ResultC from "./pages/ResultC";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 import AdminHome from "./pages/admin/AdminHome";
 import AdminWastes from "./pages/admin/AdminWastes";
@@ -28,6 +29,7 @@ function App() {
         <Route path="resultA" element={<ResultA />} />
         <Route path="resultB" element={<ResultB />} />
         <Route path="resultC" element={<ResultC />} />
+        <Route path="privacy" element={<PrivacyPolicy />} />
       </Route>
 
       {/* 관리자 로그인 */}
