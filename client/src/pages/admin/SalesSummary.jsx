@@ -198,7 +198,7 @@ export default function SalesSummary() {
           </div>
 
           <div className="card-value">
-            {(Number(data.total || 0) / 1000).toLocaleString()} 천원
+            {Math.round(Number(data.total || 0) / 1000).toLocaleString()} 천원
           </div>
         </div>
 
