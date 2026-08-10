@@ -15,6 +15,77 @@ router.use((req, res, next) => {
 });
 
 /**
+ * 💰 작업완료 매출 집계
+ * GET /api/admin/sales-summary
+ */
+router.get("/sales-summary", async (req, res) => {
+  try {
+    let fromDate;
+    let toDate;
+
+    if (req.query.from_date) {
+      fromDate = new Date(req.query.from_date);
+    } else {
+      fromDate = new Date();
+      fromDate.setDate(fromDate.getDate() - 30);
+    }
+    fromDate.setHours(0, 0, 0, 0);
+
+    if (req.query.to_date) {
+      toDate = new Date(req.query.to_date);
+    } else {
+      toDate = new Date();
+    }
+    toDate.setHours(23, 59, 59, 999);
+
+    const result = await pool.query(
+      `
+      SELECT
+        id,
+        name,
+        phone,
+        gubun,
+        final_cost,
+        created_at
+      FROM wastes
+      WHERE status='작업완료'
+        AND final_cost IS NOT NULL
+        AND created_at >= $1
+        AND created_at < $2
+      ORDER BY created_at DESC
+      `,
+      [fromDate, toDate]
+    );
+
+    const rows = result.rows;
+
+    const 생활폐기물 = rows.filter(r => r.gubun === "생활폐기물");
+    const 유품정리 = rows.filter(r => r.gubun === "유품정리");
+    const 사업장 = rows.filter(r => r.gubun === "사업장");
+
+    const total = rows.reduce(
+      (sum, r) => sum + Number(r.final_cost || 0),
+      0
+    );
+
+    res.json({
+      ok: true,
+      생활폐기물,
+      유품정리,
+      사업장,
+      total
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      ok: false,
+      error: "Server Error"
+    });
+  }
+});
+
+/**
  * ✅ 접수 목록 조회
  * GET /api/admin/wastes
  * ?page=1&limit=10&from_date=YYYY-MM-DD&to_date=YYYY-MM-DD

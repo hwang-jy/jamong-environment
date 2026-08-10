@@ -51,6 +51,14 @@ function AdminHeader({
 
             <button
               type="button"
+              className="admin-btn admin-sales"
+              onClick={() => navigate("/admin/sales-summary")}
+            >
+              💰 매출집계
+            </button>
+
+            <button
+              type="button"
               className="admin-btn admin-logout"
               onClick={handleLogout}
             >

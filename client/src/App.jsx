@@ -17,6 +17,7 @@ import AdminWastes from "./pages/admin/AdminWastes";
 import AdminWasteDetail from "./pages/admin/AdminWasteDetail";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminMailLogs from "./pages/admin/AdminMailLogs";
+import SalesSummary from "./pages/admin/SalesSummary";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
         <Route path="wastes" element={<AdminWastes />} />
         <Route path="wastes/:id" element={<AdminWasteDetail />} />
         <Route path="mail-logs" element={<AdminMailLogs/>} />
+        <Route path="sales-summary" element={<SalesSummary />} />
       </Route>
 
       {/* fallback */}
