@@ -53,7 +53,16 @@ export default function SalesSummary() {
 
     return (
       <div className="summary-box">
-        <h3>{title}</h3>
+
+        <div className="section-header">
+          <div className="section-title">
+            📦 {title}
+          </div>
+
+          <div className="section-count">
+            {rows.length}건
+          </div>
+        </div>
 
         <table className="summary-table">
           <thead>
@@ -61,14 +70,17 @@ export default function SalesSummary() {
               <th>날짜</th>
               <th>이름</th>
               <th>연락처</th>
-              <th>금액</th>
+              <th>금액(천원)</th>
             </tr>
           </thead>
 
           <tbody>
+
             {rows.length === 0 && (
               <tr>
-                <td colSpan="4">데이터 없음</td>
+                <td colSpan="4">
+                  데이터가 없습니다.
+                </td>
               </tr>
             )}
 
@@ -76,53 +88,119 @@ export default function SalesSummary() {
               <tr key={row.id}>
                 <td>
                   {new Date(row.created_at)
-                    .toLocaleDateString()}
+                    .toLocaleDateString("ko-KR", {
+                      year: "2-digit",
+                      month: "2-digit",
+                      day: "2-digit",
+                    })
+                    .replace(/ /g, "")}
                 </td>
 
                 <td>{row.name}</td>
 
-                <td>{row.phone}</td>
-
                 <td>
-                  {Number(row.final_cost).toLocaleString()}원
+                  {row.phone ? row.phone.replace(/^010-/, "") : ""}
+                </td>
+
+                <td className="money">
+                  {Math.round(Number(row.final_cost || 0) / 1000).toLocaleString()}
                 </td>
               </tr>
             ))}
+
           </tbody>
         </table>
 
         <div className="subtotal">
-          소계 :
-          <b>{sum.toLocaleString()}원</b>
+          <span>소계</span>
+
+          <strong>
+            {(sum / 1000).toLocaleString()} 천원
+          </strong>
         </div>
+
       </div>
     );
   };
 
   return (
-    <div className="sales-page">
+    <div className="sales-summary">
 
-      <h2>💰 작업완료 매출집계</h2>
+      <div className="summary-title">
+        <h2>💰 작업완료 매출 집계</h2>
+        <p>기간별 작업 완료 금액 현황</p>
+      </div>
 
-      <div className="filter-bar">
+      <div className="summary-filter">
 
-        <input
-          type="date"
-          value={fromDate}
-          onChange={(e)=>setFromDate(e.target.value)}
-        />
+        <div className="date-box">
 
-        <span>~</span>
+          <input
+            type="date"
+            value={fromDate}
+            onChange={(e) => setFromDate(e.target.value)}
+          />
 
-        <input
-          type="date"
-          value={toDate}
-          onChange={(e)=>setToDate(e.target.value)}
-        />
+          <span>~</span>
 
-        <button onClick={fetchData}>
+          <input
+            type="date"
+            value={toDate}
+            onChange={(e) => setToDate(e.target.value)}
+          />
+
+        </div>
+
+        <button
+          className="btn-search"
+          onClick={fetchData}
+        >
           조회
         </button>
+
+      </div>
+
+      <div className="summary-cards">
+
+        <div className="card">
+          <div className="card-title">
+            생활폐기물
+          </div>
+
+          <div className="card-value">
+            {data.생활폐기물.length}건
+          </div>
+        </div>
+
+        <div className="card">
+          <div className="card-title">
+            유품정리
+          </div>
+
+          <div className="card-value">
+            {data.유품정리.length}건
+          </div>
+        </div>
+
+        <div className="card">
+          <div className="card-title">
+            사업장
+          </div>
+
+          <div className="card-value">
+            {data.사업장.length}건
+          </div>
+        </div>
+
+        <div className="card total-card">
+          <div className="card-title">
+            전체 매출
+          </div>
+
+          <div className="card-value">
+            {(Number(data.total || 0) / 1000).toLocaleString()} 천원
+          </div>
+        </div>
 
       </div>
 
@@ -131,15 +209,6 @@ export default function SalesSummary() {
       {renderTable("유품정리", data.유품정리)}
 
       {renderTable("사업장", data.사업장)}
-
-      <div className="grand-total">
-
-        전체 합계 :
-        <strong>
-          {Number(data.total || 0).toLocaleString()}원
-        </strong>
-
-      </div>
 
     </div>
   );
