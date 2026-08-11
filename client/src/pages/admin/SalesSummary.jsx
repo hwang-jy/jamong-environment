@@ -53,7 +53,6 @@ export default function SalesSummary() {
 
     return (
       <div className="summary-box">
-
         <div className="section-header">
           <div className="section-title">
             📦 {title}
@@ -75,7 +74,6 @@ export default function SalesSummary() {
           </thead>
 
           <tbody>
-
             {rows.length === 0 && (
               <tr>
                 <td colSpan="4">
@@ -99,15 +97,18 @@ export default function SalesSummary() {
                 <td>{row.name}</td>
 
                 <td>
-                  {row.phone ? row.phone.replace(/^010-/, "") : ""}
+                  {row.phone
+                    ? row.phone.replace(/^010-/, "")
+                    : ""}
                 </td>
 
                 <td className="money">
-                  {Math.round(Number(row.final_cost || 0) / 1000).toLocaleString()}
+                  {Math.round(
+                    Number(row.final_cost || 0) / 1000
+                  ).toLocaleString()}
                 </td>
               </tr>
             ))}
-
           </tbody>
         </table>
 
@@ -118,7 +119,6 @@ export default function SalesSummary() {
             {(sum / 1000).toLocaleString()} 천원
           </strong>
         </div>
-
       </div>
     );
   };
@@ -131,25 +131,21 @@ export default function SalesSummary() {
         <p>기간별 작업 완료 금액 현황</p>
       </div>
 
+      {/* 날짜 + 조회 : 한 줄 */}
       <div className="summary-filter">
+        <input
+          type="date"
+          value={fromDate}
+          onChange={(e) => setFromDate(e.target.value)}
+        />
 
-        <div className="date-box">
+        <span className="date-wave">~</span>
 
-          <input
-            type="date"
-            value={fromDate}
-            onChange={(e) => setFromDate(e.target.value)}
-          />
-
-          <span>~</span>
-
-          <input
-            type="date"
-            value={toDate}
-            onChange={(e) => setToDate(e.target.value)}
-          />
-
-        </div>
+        <input
+          type="date"
+          value={toDate}
+          onChange={(e) => setToDate(e.target.value)}
+        />
 
         <button
           className="btn-search"
@@ -157,58 +153,52 @@ export default function SalesSummary() {
         >
           조회
         </button>
-
       </div>
 
-      <div className="summary-cards">
-
-        <div className="card">
-          <div className="card-title">
-            생활폐기물
-          </div>
-
-          <div className="card-value">
-            {data.생활폐기물.length}건
-          </div>
+      {/* 건수 : 한 줄 */}
+      <div className="count-row">
+        <div className="count-card">
+          <span>생활폐기물</span>
+          <strong>{data.생활폐기물.length}건</strong>
         </div>
 
-        <div className="card">
-          <div className="card-title">
-            유품정리
-          </div>
-
-          <div className="card-value">
-            {data.유품정리.length}건
-          </div>
+        <div className="count-card">
+          <span>유품정리</span>
+          <strong>{data.유품정리.length}건</strong>
         </div>
 
-        <div className="card">
-          <div className="card-title">
-            사업장
-          </div>
-
-          <div className="card-value">
-            {data.사업장.length}건
-          </div>
+        <div className="count-card">
+          <span>사업장</span>
+          <strong>{data.사업장.length}건</strong>
         </div>
-
-        <div className="card total-card">
-          <div className="card-title">
-            전체 매출
-          </div>
-
-          <div className="card-value">
-            {Math.round(Number(data.total || 0) / 1000).toLocaleString()} 천원
-          </div>
-        </div>
-
       </div>
 
-      {renderTable("생활폐기물", data.생활폐기물)}
+      {/* 전체 매출 : 가운데 */}
+      <div className="total-row">
+        <span>전체 매출</span>
 
-      {renderTable("유품정리", data.유품정리)}
+        <strong>
+          {Math.round(
+            Number(data.total || 0) / 1000
+          ).toLocaleString()} 천원
+        </strong>
+      </div>
 
-      {renderTable("사업장", data.사업장)}
+      {/* 아래 기존 내용 */}
+      {renderTable(
+        "생활폐기물",
+        data.생활폐기물
+      )}
+
+      {renderTable(
+        "유품정리",
+        data.유품정리
+      )}
+
+      {renderTable(
+        "사업장",
+        data.사업장
+      )}
 
     </div>
   );

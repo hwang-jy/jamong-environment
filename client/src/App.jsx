@@ -36,7 +36,7 @@ function App() {
       {/* 관리자 로그인 */}
       <Route path="/admin/login" element={<AdminLogin />} />
 
-      {/* 관리자 (보호됨) */}
+      {/* 관리자 영역 */}
       <Route
         path="/admin"
         element={
@@ -48,9 +48,18 @@ function App() {
         <Route index element={<AdminHome />} />
         <Route path="wastes" element={<AdminWastes />} />
         <Route path="wastes/:id" element={<AdminWasteDetail />} />
-        <Route path="mail-logs" element={<AdminMailLogs/>} />
-        <Route path="sales-summary" element={<SalesSummary />} />
+        <Route path="mail-logs" element={<AdminMailLogs />} />
       </Route>
+
+      {/* 매출 집계 - 독립 주소 /income */}
+      <Route
+        path="/income"
+        element={
+          <AdminProtectedRoute>
+            <SalesSummary />
+          </AdminProtectedRoute>
+        }
+      />
 
       {/* fallback */}
       <Route path="*" element={<Navigate to="/" />} />
