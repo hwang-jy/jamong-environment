@@ -27,7 +27,6 @@
   font-size: 14px;
 }
 
-
 /* ===========================
    날짜 + 조회
 =========================== */
@@ -35,33 +34,23 @@
 .summary-filter {
   max-width: 620px;
   margin: 0 auto 10px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   gap: 8px;
-
   background: #fff;
-
   padding: 9px 12px;
-
   border-radius: 10px;
-
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
 }
 
 .summary-filter input {
   width: 190px;
   height: 38px;
-
   box-sizing: border-box;
-
   border: 1px solid #d9d9d9;
   border-radius: 6px;
-
   padding: 0 8px;
-
   font-size: 14px;
 }
 
@@ -74,21 +63,15 @@
 .btn-search {
   width: 70px;
   height: 38px;
-
   flex-shrink: 0;
-
   border: none;
   border-radius: 6px;
-
   background: #2563eb;
   color: #fff;
-
   font-size: 14px;
   font-weight: bold;
-
   cursor: pointer;
 }
-
 
 /* ===========================
    건수 3개 한 줄
@@ -96,33 +79,22 @@
 
 .count-row {
   max-width: 620px;
-
   margin: 0 auto 10px;
-
   display: grid;
-
   grid-template-columns: repeat(3, 1fr);
-
   gap: 8px;
 }
 
 .count-card {
   min-height: 58px;
-
   background: #fff;
-
   border-radius: 9px;
-
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-
   display: flex;
   flex-direction: column;
-
   align-items: center;
   justify-content: center;
-
   padding: 6px 8px;
-
   box-sizing: border-box;
 }
 
@@ -133,43 +105,30 @@
 
 .count-card strong {
   margin-top: 3px;
-
   font-size: 20px;
-
   color: #2563eb;
 }
 
-
 /* ===========================
-   전체 매출 가운데
+   전체 매출
 =========================== */
 
 .total-row {
   width: 300px;
-
-  margin: 0 auto 18px;
-
+  max-width: 90%;
   min-height: 58px;
-
+  margin: 0 auto 18px;
   box-sizing: border-box;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
+  gap: 14px;
 
-  gap: 16px;
-
-  padding: 8px 15px;
-
+  padding: 8px 12px;
   border-radius: 10px;
 
-  background: linear-gradient(
-    135deg,
-    #2563eb,
-    #1d4ed8
-  );
-
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
   color: #fff;
 
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
@@ -177,6 +136,7 @@
 
 .total-row span {
   font-size: 14px;
+  white-space: nowrap;
 }
 
 .total-row strong {
@@ -184,88 +144,65 @@
   white-space: nowrap;
 }
 
-
 /* ===========================
    아래 상세 집계
 =========================== */
 
 .summary-box {
   margin-bottom: 25px;
-
   background: #fff;
-
   border-radius: 10px;
-
   overflow: hidden;
-
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
 }
 
 .section-header {
   display: flex;
-
   justify-content: space-between;
   align-items: center;
-
   padding: 14px 18px;
-
   background: #eff6ff;
-
   border-bottom: 1px solid #dbeafe;
 }
 
 .section-title {
   font-size: 20px;
-
   font-weight: bold;
-
   color: #1d4ed8;
 }
 
 .section-count {
   background: #2563eb;
-
   color: #fff;
-
   padding: 4px 10px;
-
   border-radius: 20px;
-
   font-size: 13px;
 }
 
-
-/* 표 */
+/* ===========================
+   표
+=========================== */
 
 .summary-table {
   width: 100%;
-
   border-collapse: collapse;
-
   table-layout: fixed;
 }
 
 .summary-table thead {
   background: #2563eb;
-
   color: #fff;
 }
 
 .summary-table th,
 .summary-table td {
   padding: 8px 4px;
-
   font-size: 13px;
-
   white-space: nowrap;
-
   overflow: hidden;
-
   text-overflow: ellipsis;
-
   border-bottom: 1px solid #eee;
 }
-
 
 /* 날짜 */
 
@@ -275,7 +212,6 @@
   text-align: center;
 }
 
-
 /* 이름 */
 
 .summary-table th:nth-child(2),
@@ -283,7 +219,6 @@
   width: 55px;
   text-align: center;
 }
-
 
 /* 연락처 */
 
@@ -293,23 +228,21 @@
   text-align: center;
 }
 
-
 /* 금액 */
 
+.summary-table th:nth-child(4),
+.summary-table td:nth-child(4) {
+  width: 82px;
+}
+
 .summary-table th:nth-child(4) {
-  width: 65px;
-  text-align: left;
+  text-align: center;
 }
 
 .summary-table td:nth-child(4) {
-  width: 65px;
-
   text-align: right;
-
   font-weight: bold;
-
   color: #2563eb;
-
   font-variant-numeric: tabular-nums;
 }
 
@@ -317,28 +250,24 @@
   background: #fafafa;
 }
 
-
-/* 소계 */
+/* ===========================
+   소계
+=========================== */
 
 .subtotal {
   display: flex;
-
   justify-content: space-between;
   align-items: center;
-
   padding: 14px 18px;
-
   background: #f8fafc;
-
   font-size: 16px;
 }
 
 .subtotal strong {
   color: #dc2626;
-
   font-size: 22px;
+  white-space: nowrap;
 }
-
 
 /* ===========================
    휴대폰
@@ -347,8 +276,12 @@
 @media (max-width: 600px) {
 
   .sales-summary {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
     margin: 10px auto;
     padding: 8px;
+    overflow-x: hidden;
   }
 
   .summary-title {
@@ -363,66 +296,52 @@
     margin: 3px 0 8px;
   }
 
-
-  /* 날짜는 휴대폰에서도 반드시 한 줄 */
+  /* 날짜 + 조회 한 줄 */
 
   .summary-filter {
     width: 100%;
     max-width: 100%;
-
     box-sizing: border-box;
-
     gap: 4px;
-
     padding: 7px 5px;
   }
 
   .summary-filter input {
     min-width: 0;
     width: calc((100% - 58px) / 2);
-
     height: 36px;
-
-    padding: 0 3px;
-
-    font-size: 12px;
+    padding: 0 2px;
+    font-size: 11px;
   }
 
   .date-wave {
-    font-size: 12px;
+    font-size: 11px;
   }
 
   .btn-search {
     width: 48px;
     height: 36px;
-
     font-size: 12px;
   }
 
-
-  /* 건수 3개 반드시 한 줄 */
+  /* 건수 3개 한 줄 */
 
   .count-row {
     width: 100%;
     max-width: 100%;
-
     grid-template-columns: repeat(3, 1fr);
-
     gap: 5px;
-
     margin-bottom: 8px;
   }
 
   .count-card {
     min-width: 0;
     min-height: 54px;
-
     padding: 5px 2px;
   }
 
   .count-card span {
     font-size: 11px;
-
     white-space: nowrap;
   }
 
@@ -430,36 +349,40 @@
     font-size: 18px;
   }
 
-
   /* 전체 매출 */
 
   .total-row {
     width: 240px;
-
+    max-width: 90%;
     min-height: 52px;
-
     margin-bottom: 14px;
-
-    gap: 12px;
-
-    padding: 6px 10px;
+    padding: 6px 8px;
+    gap: 8px;
   }
 
   .total-row span {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .total-row strong {
-    font-size: 19px;
+    font-size: 18px;
   }
 
+  /* 상세표 */
 
-  /* 기존 상세표 */
+  .summary-box {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .summary-table {
+    width: 100%;
+    table-layout: fixed;
+  }
 
   .summary-table th,
   .summary-table td {
-    font-size: 12px;
-
+    font-size: 11px;
     padding: 6px 2px;
   }
 
@@ -470,16 +393,31 @@
 
   .summary-table th:nth-child(2),
   .summary-table td:nth-child(2) {
-    width: 46px;
+    width: 44px;
   }
 
   .summary-table th:nth-child(3),
   .summary-table td:nth-child(3) {
-    width: 84px;
+    width: 78px;
   }
 
   .summary-table th:nth-child(4),
   .summary-table td:nth-child(4) {
-    width: 52px;
+    width: 72px;
+  }
+
+  .summary-table td:nth-child(4) {
+    font-size: 11px;
+  }
+
+  /* 소계 */
+
+  .subtotal {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .subtotal strong {
+    font-size: 18px;
   }
 }

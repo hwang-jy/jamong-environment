@@ -69,7 +69,7 @@ export default function SalesSummary() {
               <th>날짜</th>
               <th>이름</th>
               <th>연락처</th>
-              <th>금액(천원)</th>
+              <th>금액(원)</th>
             </tr>
           </thead>
 
@@ -103,9 +103,7 @@ export default function SalesSummary() {
                 </td>
 
                 <td className="money">
-                  {Math.round(
-                    Number(row.final_cost || 0) / 1000
-                  ).toLocaleString()}
+                  {Number(row.final_cost || 0).toLocaleString()}
                 </td>
               </tr>
             ))}
@@ -116,7 +114,7 @@ export default function SalesSummary() {
           <span>소계</span>
 
           <strong>
-            {(sum / 1000).toLocaleString()} 천원
+            {sum.toLocaleString()}원
           </strong>
         </div>
       </div>
@@ -178,9 +176,7 @@ export default function SalesSummary() {
         <span>전체 매출</span>
 
         <strong>
-          {Math.round(
-            Number(data.total || 0) / 1000
-          ).toLocaleString()} 천원
+           {Number(data.total || 0).toLocaleString()}원
         </strong>
       </div>
 
