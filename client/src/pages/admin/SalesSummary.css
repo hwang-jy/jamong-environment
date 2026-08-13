@@ -6,25 +6,61 @@
   max-width: 1200px;
   margin: 20px auto;
   padding: 12px;
+  box-sizing: border-box;
 }
 
-/* 제목 */
+/* ===========================
+   제목
+=========================== */
 
 .summary-title {
+  max-width: 620px;
+  margin: 0 auto 14px;
   text-align: center;
-  margin-bottom: 14px;
 }
 
 .summary-title h2 {
-  margin: 0;
+  margin: 0 0 8px;
   font-size: 30px;
   color: #1e3a8a;
 }
 
-.summary-title p {
-  margin-top: 6px;
+/* 부제목 + CSV */
+
+.summary-subtitle-row {
+  position: relative;
+  min-height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.summary-subtitle-row p {
+  margin: 0;
   color: #64748b;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.btn-csv {
+  position: absolute;
+  right: 0;
+
+  height: 36px;
+  padding: 0 13px;
+
+  border: none;
+  border-radius: 7px;
+
+  background: #16a34a;
+  color: #fff;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  white-space: nowrap;
+  cursor: pointer;
 }
 
 /* ===========================
@@ -34,67 +70,101 @@
 .summary-filter {
   max-width: 620px;
   margin: 0 auto 10px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+
+  gap: 9px;
+
   background: #fff;
-  padding: 9px 12px;
+
+  padding: 10px 12px;
+
   border-radius: 10px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.08);
 }
 
 .summary-filter input {
-  width: 190px;
-  height: 38px;
+  width: 210px;
+  height: 44px;
+
   box-sizing: border-box;
-  border: 1px solid #d9d9d9;
-  border-radius: 6px;
-  padding: 0 8px;
-  font-size: 14px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+
+  padding: 0 10px;
+
+  font-size: 17px;
+  font-weight: 700;
+
+  color: #111827;
+  background: #f9fafb;
 }
 
 .date-wave {
-  font-size: 15px;
-  color: #64748b;
+  font-size: 21px;
+  font-weight: 800;
+  color: #475569;
   flex-shrink: 0;
 }
 
 .btn-search {
-  width: 70px;
-  height: 38px;
+  width: 76px;
+  height: 44px;
+
   flex-shrink: 0;
+
   border: none;
-  border-radius: 6px;
+  border-radius: 7px;
+
   background: #2563eb;
   color: #fff;
-  font-size: 14px;
-  font-weight: bold;
+
+  font-size: 17px;
+  font-weight: 800;
+
+  white-space: nowrap;
+  line-height: 44px;
+  padding: 0;
+
   cursor: pointer;
 }
 
 /* ===========================
-   건수 3개 한 줄
+   건수 3개
 =========================== */
 
 .count-row {
   max-width: 620px;
   margin: 0 auto 10px;
+
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+
   gap: 8px;
 }
 
 .count-card {
   min-height: 58px;
+
   background: #fff;
+
   border-radius: 9px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.08);
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   padding: 6px 8px;
+
   box-sizing: border-box;
 }
 
@@ -116,22 +186,34 @@
 .total-row {
   width: 300px;
   max-width: 90%;
+
   min-height: 58px;
+
   margin: 0 auto 18px;
+
   box-sizing: border-box;
 
   display: flex;
   align-items: center;
   justify-content: center;
+
   gap: 14px;
 
   padding: 8px 12px;
+
   border-radius: 10px;
 
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  background:
+    linear-gradient(
+      135deg,
+      #2563eb,
+      #1d4ed8
+    );
+
   color: #fff;
 
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.08);
 }
 
 .total-row span {
@@ -145,23 +227,31 @@
 }
 
 /* ===========================
-   아래 상세 집계
+   상세 집계
 =========================== */
 
 .summary-box {
   margin-bottom: 25px;
+
   background: #fff;
+
   border-radius: 10px;
+
   overflow: hidden;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.08);
 }
 
 .section-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   padding: 14px 18px;
+
   background: #eff6ff;
+
   border-bottom: 1px solid #dbeafe;
 }
 
@@ -174,8 +264,11 @@
 .section-count {
   background: #2563eb;
   color: #fff;
+
   padding: 4px 10px;
+
   border-radius: 20px;
+
   font-size: 13px;
 }
 
@@ -185,7 +278,9 @@
 
 .summary-table {
   width: 100%;
+
   border-collapse: collapse;
+
   table-layout: fixed;
 }
 
@@ -197,10 +292,13 @@
 .summary-table th,
 .summary-table td {
   padding: 8px 4px;
+
   font-size: 13px;
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
   border-bottom: 1px solid #eee;
 }
 
@@ -241,8 +339,11 @@
 
 .summary-table td:nth-child(4) {
   text-align: right;
+
   font-weight: bold;
+
   color: #2563eb;
+
   font-variant-numeric: tabular-nums;
 }
 
@@ -258,14 +359,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   padding: 14px 18px;
+
   background: #f8fafc;
+
   font-size: 16px;
 }
 
 .subtotal strong {
   color: #dc2626;
+
   font-size: 22px;
+
   white-space: nowrap;
 }
 
@@ -278,70 +384,141 @@
   .sales-summary {
     width: 100%;
     max-width: 100%;
+
     box-sizing: border-box;
+
     margin: 10px auto;
+
     padding: 8px;
+
     overflow-x: hidden;
   }
 
+  /* 제목 */
+
   .summary-title {
+    width: 100%;
+    max-width: 100%;
+
     margin-bottom: 10px;
   }
 
   .summary-title h2 {
     font-size: 24px;
+    margin-bottom: 7px;
   }
 
-  .summary-title p {
-    margin: 3px 0 8px;
+  /* 부제목 + CSV */
+
+  .summary-subtitle-row {
+    width: 100%;
+
+    min-height: 38px;
+
+    justify-content: flex-start;
+
+    padding-right: 112px;
+
+    box-sizing: border-box;
   }
 
-  /* 날짜 + 조회 한 줄 */
+  .summary-subtitle-row p {
+    font-size: 15px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+  }
+
+  .btn-csv {
+    right: 0;
+
+    height: 36px;
+
+    padding: 0 10px;
+
+    font-size: 12px;
+  }
+
+  /* ===========================
+     날짜 + 조회
+  =========================== */
 
   .summary-filter {
     width: 100%;
     max-width: 100%;
+
     box-sizing: border-box;
-    gap: 4px;
-    padding: 7px 5px;
+
+    gap: 5px;
+
+    padding: 8px 5px;
   }
 
   .summary-filter input {
     min-width: 0;
-    width: calc((100% - 58px) / 2);
-    height: 36px;
-    padding: 0 2px;
-    font-size: 11px;
+
+    flex: 1 1 0;
+
+    width: auto;
+
+    height: 44px;
+
+    padding: 0 3px;
+
+    font-size: 15px;
+
+    font-weight: 700;
   }
 
   .date-wave {
-    font-size: 11px;
+    font-size: 20px;
+    font-weight: 900;
   }
 
   .btn-search {
-    width: 48px;
-    height: 36px;
-    font-size: 12px;
+    width: 58px;
+
+    height: 44px;
+
+    flex: 0 0 58px;
+
+    font-size: 16px;
+
+    font-weight: 900;
+
+    white-space: nowrap;
+
+    line-height: 44px;
+
+    padding: 0;
   }
 
-  /* 건수 3개 한 줄 */
+  /* 건수 */
 
   .count-row {
     width: 100%;
     max-width: 100%;
-    grid-template-columns: repeat(3, 1fr);
+
+    grid-template-columns:
+      repeat(3, 1fr);
+
     gap: 5px;
+
     margin-bottom: 8px;
   }
 
   .count-card {
     min-width: 0;
+
     min-height: 54px;
+
     padding: 5px 2px;
   }
 
   .count-card span {
     font-size: 11px;
+
     white-space: nowrap;
   }
 
@@ -353,10 +530,15 @@
 
   .total-row {
     width: 240px;
+
     max-width: 90%;
+
     min-height: 52px;
+
     margin-bottom: 14px;
+
     padding: 6px 8px;
+
     gap: 8px;
   }
 
@@ -372,17 +554,20 @@
 
   .summary-box {
     width: 100%;
+
     max-width: 100%;
   }
 
   .summary-table {
     width: 100%;
+
     table-layout: fixed;
   }
 
   .summary-table th,
   .summary-table td {
     font-size: 11px;
+
     padding: 6px 2px;
   }
 
@@ -414,6 +599,7 @@
 
   .subtotal {
     padding: 10px 12px;
+
     font-size: 14px;
   }
 

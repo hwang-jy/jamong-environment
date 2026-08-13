@@ -45,6 +45,79 @@ export default function SalesSummary() {
     fetchData();
   }, []);
 
+  /* ===========================
+     CSV 다운로드
+  =========================== */
+  const downloadCSV = () => {
+    const allRows = [
+      ...data.생활폐기물.map((row) => ({
+        ...row,
+        구분: "생활폐기물",
+      })),
+      ...data.유품정리.map((row) => ({
+        ...row,
+        구분: "유품정리",
+      })),
+      ...data.사업장.map((row) => ({
+        ...row,
+        구분: "사업장",
+      })),
+    ];
+
+    if (allRows.length === 0) {
+      alert("다운로드할 데이터가 없습니다.");
+      return;
+    }
+
+    const csvRows = [
+      ["날짜", "구분", "이름", "연락처", "금액"],
+      ...allRows.map((row) => [
+        new Date(row.created_at).toLocaleDateString("ko-KR"),
+        row.구분,
+        row.name || "",
+        row.phone || "",
+        Number(row.final_cost || 0),
+      ]),
+    ];
+
+    const csvContent = csvRows
+      .map((row) =>
+        row
+          .map((value) => {
+            const text = String(value ?? "").replace(/"/g, '""');
+            return `"${text}"`;
+          })
+          .join(",")
+      )
+      .join("\n");
+
+    /* 엑셀 한글 깨짐 방지 */
+    const BOM = "\uFEFF";
+
+    const blob = new Blob(
+      [BOM + csvContent],
+      {
+        type: "text/csv;charset=utf-8;",
+      }
+    );
+
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download =
+      `매출집계_${fromDate}_${toDate}.csv`;
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+  };
+
   const renderTable = (title, rows) => {
     const sum = rows.reduce(
       (a, b) => a + Number(b.final_cost || 0),
@@ -53,6 +126,7 @@ export default function SalesSummary() {
 
     return (
       <div className="summary-box">
+
         <div className="section-header">
           <div className="section-title">
             📦 {title}
@@ -84,6 +158,7 @@ export default function SalesSummary() {
 
             {rows.map((row) => (
               <tr key={row.id}>
+
                 <td>
                   {new Date(row.created_at)
                     .toLocaleDateString("ko-KR", {
@@ -103,8 +178,11 @@ export default function SalesSummary() {
                 </td>
 
                 <td className="money">
-                  {Number(row.final_cost || 0).toLocaleString()}
+                  {Number(
+                    row.final_cost || 0
+                  ).toLocaleString()}
                 </td>
+
               </tr>
             ))}
           </tbody>
@@ -117,6 +195,7 @@ export default function SalesSummary() {
             {sum.toLocaleString()}원
           </strong>
         </div>
+
       </div>
     );
   };
@@ -126,15 +205,29 @@ export default function SalesSummary() {
 
       <div className="summary-title">
         <h2>💰 작업완료 매출 집계</h2>
-        <p>기간별 작업 완료 금액 현황</p>
+
+        <div className="summary-subtitle-row">
+          <p>기간별 작업 완료 금액 현황</p>
+
+          <button
+            type="button"
+            className="btn-csv"
+            onClick={downloadCSV}
+          >
+            CSV 다운로드
+          </button>
+        </div>
       </div>
 
-      {/* 날짜 + 조회 : 한 줄 */}
+      {/* 날짜 + 조회 */}
       <div className="summary-filter">
+
         <input
           type="date"
           value={fromDate}
-          onChange={(e) => setFromDate(e.target.value)}
+          onChange={(e) =>
+            setFromDate(e.target.value)
+          }
         />
 
         <span className="date-wave">~</span>
@@ -142,45 +235,60 @@ export default function SalesSummary() {
         <input
           type="date"
           value={toDate}
-          onChange={(e) => setToDate(e.target.value)}
+          onChange={(e) =>
+            setToDate(e.target.value)
+          }
         />
 
         <button
+          type="button"
           className="btn-search"
           onClick={fetchData}
         >
           조회
         </button>
+
       </div>
 
-      {/* 건수 : 한 줄 */}
+      {/* 건수 */}
       <div className="count-row">
+
         <div className="count-card">
           <span>생활폐기물</span>
-          <strong>{data.생활폐기물.length}건</strong>
+          <strong>
+            {data.생활폐기물.length}건
+          </strong>
         </div>
 
         <div className="count-card">
           <span>유품정리</span>
-          <strong>{data.유품정리.length}건</strong>
+          <strong>
+            {data.유품정리.length}건
+          </strong>
         </div>
 
         <div className="count-card">
           <span>사업장</span>
-          <strong>{data.사업장.length}건</strong>
+          <strong>
+            {data.사업장.length}건
+          </strong>
         </div>
+
       </div>
 
-      {/* 전체 매출 : 가운데 */}
+      {/* 전체 매출 */}
       <div className="total-row">
+
         <span>전체 매출</span>
 
         <strong>
-           {Number(data.total || 0).toLocaleString()}원
+          {Number(
+            data.total || 0
+          ).toLocaleString()}원
         </strong>
+
       </div>
 
-      {/* 아래 기존 내용 */}
       {renderTable(
         "생활폐기물",
         data.생활폐기물
