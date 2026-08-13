@@ -31,7 +31,6 @@ function ResultCommon({
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [showPostcode, setShowPostcode] = useState(false);
-  const [showKakaoGuide, setShowKakaoGuide] = useState(false);
 
   /* =========================
      공통 change
@@ -141,8 +140,9 @@ function ResultCommon({
   };
 
   /* =========================
-     카카오 상담
-     이름 + 구분만 복사
+     카카오 최종 견적 상담
+     이름 + 구분 복사 후
+     바로 카카오 상담방 열기
   ========================= */
   const openKakaoConsult = async () => {
 
@@ -152,28 +152,14 @@ function ResultCommon({
     }
 
     const consultText =
-`[자몽환경 견적상담]
-이름: ${form.name}
+`이름: ${form.name}
 구분: ${form.gubun || ""}`;
 
     try {
-
       await navigator.clipboard.writeText(consultText);
-
-      alert(
-        "이름과 구분이 복사되었습니다.\n\n카카오 상담방에서 붙여넣기 후 사진을 보내주세요."
-      );
-
     } catch (err) {
-
       console.error("클립보드 복사 실패:", err);
-
-      alert(
-        "자동 복사가 되지 않았습니다.\n카카오 상담방에서 이름과 구분을 입력해주세요."
-      );
     }
-
-    setShowKakaoGuide(false);
 
     window.open(
       "https://open.kakao.com/o/gM7rznxi",
@@ -387,74 +373,19 @@ function ResultCommon({
 
       )}
 
-      {/* 카카오 버튼 */}
+      {/* 카카오 최종 견적 상담 - 한 번에 입장 */}
       <div className="floating-consult">
 
         <button
           className="kakao-btn"
-          onClick={() => setShowKakaoGuide(true)}
+          onClick={openKakaoConsult}
         >
-          💬 최종 견적 상담
+          💬 카카오 최종 견적 상담
         </button>
 
       </div>
 
-      {/* 카카오 상담 안내 */}
-      {showKakaoGuide && (
-
-        <div className="kakao-guide-modal">
-
-          <div className="kakao-guide-box">
-
-            <h2>최종 견적 상담 안내</h2>
-
-            <p>
-              예상 견적을 확인하셨습니다.
-            </p>
-
-            <p>
-              보다 정확한 최종 견적을 위해
-              <strong> 작업 사진 2~3장</strong>을 보내주세요.
-            </p>
-
-            <p>
-              상담원이 확인 후
-              빠르게 최종 견적을 안내해드립니다.
-            </p>
-
-            <div className="guide-list">
-
-              <p>✅ 이름과 구분 자동 복사</p>
-              <p>✅ 카카오 상담방에서 붙여넣기</p>
-              <p>✅ 작업 사진 2~3장 전송</p>
-              <p>✅ 상담원이 최종 견적 안내</p>
-
-            </div>
-
-            <div className="guide-buttons">
-
-              <button
-                className="guide-start-btn"
-                onClick={openKakaoConsult}
-              >
-                카카오 상담방 입장
-              </button>
-
-              <button
-                className="guide-close-btn"
-                onClick={() => setShowKakaoGuide(false)}
-              >
-                닫기
-              </button>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      )}
-
+      {/* 주소 검색창 */}
       {showPostcode && (
 
         <div className="postcode-modal">
