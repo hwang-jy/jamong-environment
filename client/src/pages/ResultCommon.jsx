@@ -144,7 +144,7 @@ function ResultCommon({
      이름 + 구분 복사 후
      바로 카카오 상담방 열기
   ========================= */
-  const openKakaoConsult = async () => {
+ const openKakaoConsult = async () => {
 
     if (!form.name) {
       alert("이름을 먼저 입력해주세요.");
@@ -152,20 +152,25 @@ function ResultCommon({
     }
 
     const consultText =
-`이름: ${form.name}
-구분: ${form.gubun || ""}`;
+      `이름: ${form.name}
+      구분: ${form.gubun || ""}`;
 
-    try {
-      await navigator.clipboard.writeText(consultText);
-    } catch (err) {
-      console.error("클립보드 복사 실패:", err);
-    }
+      try {
+        await navigator.clipboard.writeText(consultText);
 
-    window.open(
-      "https://open.kakao.com/o/gM7rznxi",
-      "_blank"
-    );
-  };
+        alert(
+          "성명과 구분이 복사되었습니다.\n\n카카오톡이 열리면 붙여넣고 사진을 올려주세요."
+        );
+
+      } catch (err) {
+        console.error("클립보드 복사 실패:", err);
+      }
+
+      window.open(
+        "https://open.kakao.com/o/gM7rznxi",
+        "_blank"
+      );
+    };
 
   return (
     <>
