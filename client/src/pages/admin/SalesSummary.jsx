@@ -3,14 +3,28 @@ import axios from "axios";
 import "./SalesSummary.css";
 
 export default function SalesSummary() {
+
+  /* ===========================
+     처음 실행 시 이번 달 1일 ~ 오늘
+  =========================== */
+
   const [fromDate, setFromDate] = useState(() => {
     const d = new Date();
-    d.setDate(d.getDate() - 30);
-    return d.toISOString().slice(0, 10);
+
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+
+    return `${year}-${month}-01`;
   });
 
   const [toDate, setToDate] = useState(() => {
-    return new Date().toISOString().slice(0, 10);
+    const d = new Date();
+
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
   });
 
   const [data, setData] = useState({
@@ -41,6 +55,7 @@ export default function SalesSummary() {
     }
   };
 
+  /* 처음 화면 열 때 이번 달 자동 조회 */
   useEffect(() => {
     fetchData();
   }, []);
@@ -48,6 +63,7 @@ export default function SalesSummary() {
   /* ===========================
      CSV 다운로드
   =========================== */
+
   const downloadCSV = () => {
     const allRows = [
       ...data.생활폐기물.map((row) => ({
@@ -106,8 +122,7 @@ export default function SalesSummary() {
     const link = document.createElement("a");
 
     link.href = url;
-    link.download =
-      `매출집계_${fromDate}_${toDate}.csv`;
+    link.download = `매출집계_${fromDate}_${toDate}.csv`;
 
     document.body.appendChild(link);
 
@@ -117,6 +132,10 @@ export default function SalesSummary() {
 
     URL.revokeObjectURL(url);
   };
+
+  /* ===========================
+     표
+  =========================== */
 
   const renderTable = (title, rows) => {
     const sum = rows.reduce(
