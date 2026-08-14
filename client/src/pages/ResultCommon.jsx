@@ -380,7 +380,7 @@ function ResultCommon({
           className="kakao-btn"
           onClick={openKakaoConsult}
         >
-          💬 카카오 최종 견적 상담
+          📋 복사 후 카카오 상담
         </button>
 
       </div>
