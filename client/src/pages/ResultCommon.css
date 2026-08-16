@@ -199,17 +199,20 @@ input[readonly] {
 
 /* 카카오 버튼: 고정하지 않고 계산 버튼 아래 배치 */
 .kakao-btn {
+  display: block;
   position: static;
-  width: 100%;
-  min-height: 48px;
-  margin: 0;
-  padding: 11px 16px;
+  width: 72%;
+  max-width: 280px;
+  min-height: 44px;
+  margin: 0 auto;
+  padding: 9px 14px;
   border: 1px solid #e6ce00;
-  border-radius: 11px;
+  border-radius: 10px;
   background: #fee500;
   color: #191919;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 800;
+  text-align: center;
   cursor: pointer;
   box-shadow: none;
 }
@@ -369,11 +372,6 @@ input[readonly] {
   .submit-btn {
     min-height: 48px;
     font-size: 17px;
-  }
-
-  .kakao-btn {
-    min-height: 46px;
-    font-size: 16px;
   }
 
   .result-cost {
