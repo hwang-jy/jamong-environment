@@ -325,6 +325,14 @@ function ResultCommon({
             {loading ? "계산 중..." : "💰 예상금액 계산"}
           </button>
 
+          <button
+            type="button"
+            className="kakao-btn"
+            onClick={openKakaoConsult}
+          >
+            💬 카카오 상담
+          </button>
+
         </div>
 
         {result && (
@@ -377,18 +385,6 @@ function ResultCommon({
         />
 
       )}
-
-      {/* 카카오 최종 견적 상담 - 한 번에 입장 */}
-      <div className="floating-consult">
-
-        <button
-          className="kakao-btn"
-          onClick={openKakaoConsult}
-        >
-          📋 복사 후 카카오 상담
-        </button>
-
-      </div>
 
       {/* 주소 검색창 */}
       {showPostcode && (
