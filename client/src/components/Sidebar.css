@@ -1,5 +1,5 @@
 /* =========================
-   오버레이 (배경 어둡게)
+   오버레이
 ========================= */
 .overlay {
   position: fixed;
@@ -13,20 +13,33 @@
 ========================= */
 .sidebar {
   position: fixed;
-  top: 0;
-  right: -320px;              /* 기본 숨김 */
-  width: 320px;
-  height: 100%;
+
+  top: 12px;
+  right: -300px;
+
+  width: 300px;
+
+  /* 화면 전체를 꽉 채우지 않음 */
+  height: auto;
+  max-height: calc(100vh - 24px);
+
   box-sizing: border-box;
+
   background: linear-gradient(180deg, #ffffff, #f5f8fb);
-  padding: 20px 18px;
+
+  padding: 48px 16px 16px;
+
+  border-radius: 14px 0 0 14px;
 
   box-shadow: -6px 0 18px rgba(0, 0, 0, 0.25);
+
   transition: right 0.35s ease;
+
   z-index: 1000;
 
   display: flex;
   flex-direction: column;
+
   overflow-y: auto;
 }
 
@@ -37,105 +50,15 @@
 /* =========================
    닫기 버튼
 ========================= */
-.close-btn {
-  align-self: flex-end;
-  font-size: 28px;
-  border: none;
-  background: none;
-  cursor: pointer;
-  color: #444;
-}
-
-/* =========================
-   회사 정보 리스트
-========================= */
-.info-list {
-  list-style: none;
-  padding: 0;
-  margin: 12px 0 10px;
-  font-size: 14px;
-}
-
-.info-list li {
-  margin-bottom: 6px;
-  color: #333;
-}
-
-.info-list strong {
-  color: #005bbb;
-}
-
-/* =========================
-   브랜드 문구
-========================= */
-.brand-philosophy {
-  margin: 12px 0 16px;
-  padding: 12px;
-  border-left: 4px solid #005bbb;
-  background: #eef5ff;
-  font-size: 14px;
-  color: #333;
-  border-radius: 6px;
-}
-
-/* =========================
-   사업자등록증 이미지
-========================= */
-.license-box {
-  margin: 10px 0 16px;
-  text-align: center;
-}
-
-.license-box img {
-  width: 100%;
-  max-width: 260px;
-  border-radius: 10px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
-}
-
-/* =========================
-   구분선
-========================= */
-.sidebar hr {
-  margin: 18px 0;
-  border: none;
-  border-top: 1px solid #ddd;
-}
-
-/* =========================
-   메뉴 버튼
-========================= */
-.sidebar button {
-  width: 100%;
-  padding: 12px 14px;
-  margin-bottom: 10px;
-
-  font-size: 16px;
-  font-weight: 600;
-  color: #005bbb;
-
-  border: 2px solid #005bbb;
-  border-radius: 10px;
-  background: #ffffff;
-
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.sidebar button:hover {
-  background: #005bbb;
-  color: #ffffff;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 91, 187, 0.35);
-}
-
 .sidebar .sidebar-close {
   position: absolute;
-  top: 12px;
-  right: 12px;
 
-  width: 38px;
-  height: 38px;
+  top: 10px;
+  right: 10px;
+
+  width: 34px;
+  height: 34px;
+
   padding: 0;
   margin: 0;
 
@@ -145,14 +68,15 @@
 
   border: none;
   border-radius: 50%;
+
   background: #333;
   color: #fff;
 
-  font-size: 22px;
-  font-weight: normal;
+  font-size: 19px;
   line-height: 1;
 
   cursor: pointer;
+
   z-index: 1100;
 }
 
@@ -164,11 +88,129 @@
 }
 
 /* =========================
-   모바일 대응
+   회사 정보
+========================= */
+.info-list {
+  list-style: none;
+
+  padding: 0;
+  margin: 0 0 8px;
+
+  font-size: 13px;
+}
+
+.info-list li {
+  margin-bottom: 4px;
+  color: #333;
+}
+
+.info-list strong {
+  color: #005bbb;
+}
+
+/* =========================
+   브랜드 문구
+========================= */
+.brand-philosophy {
+  margin: 8px 0 10px;
+
+  padding: 9px 10px;
+
+  border-left: 4px solid #005bbb;
+
+  background: #eef5ff;
+
+  font-size: 13px;
+  line-height: 1.5;
+
+  color: #333;
+
+  border-radius: 6px;
+}
+
+/* =========================
+   사업자등록증
+========================= */
+.license-box {
+  margin: 6px 0 10px;
+  text-align: center;
+}
+
+.license-box img {
+  width: auto;
+
+  /* 등록증 크기 축소 */
+  max-width: 210px;
+  max-height: 280px;
+
+  border-radius: 8px;
+
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+}
+
+/* =========================
+   구분선
+========================= */
+.sidebar hr {
+  width: 100%;
+
+  margin: 10px 0;
+
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+/* =========================
+   메뉴 버튼
+========================= */
+.sidebar button {
+  width: 100%;
+
+  padding: 9px 12px;
+  margin-bottom: 8px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  color: #005bbb;
+
+  border: 2px solid #005bbb;
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.sidebar button:hover {
+  background: #005bbb;
+  color: #ffffff;
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 4px 12px rgba(0, 91, 187, 0.25);
+}
+
+/* =========================
+   모바일
 ========================= */
 @media (max-width: 480px) {
+
   .sidebar {
+    top: 8px;
+
     width: 86%;
     right: -86%;
+
+    max-height: calc(100vh - 16px);
+
+    padding: 45px 14px 14px;
+  }
+
+  .license-box img {
+    max-width: 190px;
+    max-height: 250px;
   }
 }
