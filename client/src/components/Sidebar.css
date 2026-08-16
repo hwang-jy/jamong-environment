@@ -213,4 +213,18 @@
     max-width: 190px;
     max-height: 250px;
   }
+
+  /* 사이드바가 열렸을 때 항상 최상단 */
+.overlay {
+  z-index: 99990 !important;
+}
+
+.sidebar {
+  z-index: 99999 !important;
+}
+
+.sidebar .sidebar-close {
+  z-index: 100000 !important;
+}
+
 }
