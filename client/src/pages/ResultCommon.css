@@ -329,7 +329,6 @@ input[readonly] {
     width: calc(100% - 16px);
     max-width: 520px;
 
-    /* 휴대폰 상단 안전영역 고려 */
     margin:
       max(8px, env(safe-area-inset-top))
       auto
@@ -339,22 +338,25 @@ input[readonly] {
     border-radius: 12px;
   }
 
+  /* 제목 - 휴대폰 폭과 관계없이 동일 크기 */
   .resultA-container h2 {
     margin: 0 0 8px;
-    font-size: clamp(19px, 5vw, 22px);
+    font-size: 21px;
     line-height: 1.25;
   }
 
+  /* 대표전화 */
   .service-call-box {
     gap: 6px;
     margin-bottom: 8px;
     padding: 8px 6px;
-
-    font-size: clamp(14px, 4vw, 16px);
+    font-size: 15px;
+    white-space: nowrap;
   }
 
   .service-call-box a {
-    font-size: clamp(15px, 4.2vw, 17px);
+    font-size: 16px;
+    white-space: nowrap;
   }
 
   .estimate-form {
@@ -366,11 +368,15 @@ input[readonly] {
     padding: 10px;
   }
 
+  /* 이름/전화번호 등이 화면 폭 때문에 이상하게 커지지 않게 */
   .form-row {
     flex-direction: row;
     gap: 7px;
   }
 
+  .input-group {
+    min-width: 0;
+  }
 
   .input-group label {
     margin-bottom: 3px;
@@ -379,7 +385,7 @@ input[readonly] {
 
   .input-group input,
   .estimate-form select {
-    height: 36px;
+    height: 38px;
     padding: 4px 8px;
     font-size: 15px;
   }
@@ -389,13 +395,14 @@ input[readonly] {
     margin-top: 8px;
   }
 
+  /* 폐기물 선택 */
   .volume-grid {
-    gap: 3px;
+    gap: 5px;
   }
 
   .volume-label {
     font-size: 14px;
-    white-space: normal;
+    line-height: 1.4;
   }
 
   .volume-label em {
@@ -409,7 +416,7 @@ input[readonly] {
   }
 
   .volume-option {
-    min-height: 22px;
+    min-height: 24px;
     font-size: 14px;
   }
 
@@ -418,25 +425,42 @@ input[readonly] {
     height: 18px;
   }
 
+  /* 예상금액 */
   .submit-btn {
     min-height: 44px;
     padding: 8px 12px;
     font-size: 16px;
   }
 
-  /* 카카오 버튼을 예상금액 바로 아래에 잘 보이게 */
+  /* 카카오 상담 */
   .kakao-btn {
     width: 100%;
     max-width: none;
     min-height: 44px;
     margin: 0;
     padding: 8px 12px;
+    border-radius: 24px;
     font-size: 16px;
   }
+
+  .result-box {
+    margin-top: 14px;
+    padding: 16px 12px;
+  }
+
+  .result-box h3 {
+    font-size: 18px;
+  }
+
   .result-cost {
     font-size: 25px;
   }
 
+  .result-sub {
+    font-size: 14px;
+  }
+
+  /* 홈으로 */
   .back-select {
     margin-top: 12px;
   }
@@ -444,6 +468,6 @@ input[readonly] {
   .home-btn {
     width: 100%;
     min-height: 42px;
+    font-size: 16px;
   }
-
 }
