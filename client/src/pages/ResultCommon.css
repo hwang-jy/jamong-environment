@@ -199,33 +199,24 @@ input[readonly] {
 
 /* 카카오 상담 버튼 */
 .kakao-btn {
+  position: static !important;
+
+  width: 75%;
+  min-height: 48px;
   display: block;
-  position: static;
 
-  width: 220px;
-  min-height: 42px;
+  margin: 14px auto;
+  padding: 10px 20px;
 
-  margin: 0 auto;
-  padding: 8px 12px;
+  border: none;
+  border-radius: 30px;
 
-  border: 1px solid #e6ce00;
-  border-radius: 10px;
-
-  background: #fee500;
+  background: #FEE500;
   color: #191919;
 
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 800;
-  text-align: center;
-
   cursor: pointer;
-  box-shadow: none;
-}
-
-.floating-consult {
-  position: static;
-  display: block;
-  width: 100%;
 }
 
 /* 결과 */
@@ -333,82 +324,126 @@ input[readonly] {
 
 /* 모바일 */
 @media (max-width: 640px) {
+
   .resultA-container {
     width: calc(100% - 16px);
-    margin: 8px auto 24px;
-    padding: 13px;
+    max-width: 520px;
+
+    /* 휴대폰 상단 안전영역 고려 */
+    margin:
+      max(8px, env(safe-area-inset-top))
+      auto
+      max(16px, env(safe-area-inset-bottom));
+
+    padding: 10px 12px 14px;
     border-radius: 12px;
   }
 
   .resultA-container h2 {
-    margin-bottom: 11px;
-    font-size: 21px;
+    margin: 0 0 8px;
+    font-size: clamp(19px, 5vw, 22px);
+    line-height: 1.25;
   }
 
   .service-call-box {
-    gap: 7px;
-    margin-bottom: 12px;
-    padding: 10px 8px;
-    font-size: 15px;
+    gap: 6px;
+    margin-bottom: 8px;
+    padding: 8px 6px;
+
+    font-size: clamp(14px, 4vw, 16px);
   }
 
   .service-call-box a {
-    font-size: 16px;
+    font-size: clamp(15px, 4.2vw, 17px);
   }
 
   .estimate-form {
-    gap: 11px;
+    gap: 8px;
   }
 
   .info-card,
   .volume-group {
-    padding: 12px;
+    padding: 10px;
   }
 
   .form-row {
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: row;
+    gap: 7px;
+  }
+
+
+  .input-group label {
+    margin-bottom: 3px;
+    font-size: 14px;
   }
 
   .input-group input,
   .estimate-form select {
-    height: 43px;
-    font-size: 16px;
+    height: 36px;
+    padding: 4px 8px;
+    font-size: 15px;
+  }
+
+  .address-group {
+    gap: 5px;
+    margin-top: 8px;
+  }
+
+  .volume-grid {
+    gap: 3px;
   }
 
   .volume-label {
-    font-size: 15px;
+    font-size: 14px;
     white-space: normal;
   }
 
+  .volume-label em {
+    font-size: 13px;
+  }
+
   .volume-options {
-    flex-direction: column;
-    gap: 5px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px 14px;
   }
 
   .volume-option {
-    min-height: 32px;
-    font-size: 15px;
+    min-height: 22px;
+    font-size: 14px;
+  }
+
+  .volume-option input {
+    width: 18px;
+    height: 18px;
   }
 
   .submit-btn {
-    min-height: 48px;
-    font-size: 17px;
+    min-height: 44px;
+    padding: 8px 12px;
+    font-size: 16px;
   }
 
+  /* 카카오 버튼을 예상금액 바로 아래에 잘 보이게 */
+  .kakao-btn {
+    width: 100%;
+    max-width: none;
+    min-height: 44px;
+    margin: 0;
+    padding: 8px 12px;
+    font-size: 16px;
+  }
   .result-cost {
-    font-size: 26px;
+    font-size: 25px;
+  }
+
+  .back-select {
+    margin-top: 12px;
   }
 
   .home-btn {
     width: 100%;
-  }
-
-  .kakao-btn {
-    width: 70%;
-    max-width: 240px;
     min-height: 42px;
-    font-size: 15px;
   }
 
 }

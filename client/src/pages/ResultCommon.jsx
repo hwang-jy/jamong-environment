@@ -140,32 +140,9 @@ function ResultCommon({
   };
 
   /* =========================
-     카카오 최종 견적 상담
-     이름 + 구분 복사 후
-     바로 카카오 상담방 열기
-  ========================= */
- const openKakaoConsult = async () => {
-
-    if (!form.name) {
-      alert("이름을 먼저 입력해주세요.");
-      return;
-    }
-
-    const consultText =
-      `이름: ${form.name}
-      구분: ${form.gubun || ""}`;
-
-      try {
-        await navigator.clipboard.writeText(consultText);
-
-        alert(
-          "성명과 구분이 복사되었습니다.\n\n카카오톡이 열리면 붙여넣고 사진을 올려주세요."
-        );
-
-      } catch (err) {
-        console.error("클립보드 복사 실패:", err);
-      }
-
+   카카오 상담방 열기
+    ========================= */
+    const openKakaoConsult = () => {
       window.open(
         "https://open.kakao.com/o/gM7rznxi",
         "_blank"
@@ -325,44 +302,44 @@ function ResultCommon({
             {loading ? "계산 중..." : "💰 예상금액 계산"}
           </button>
 
-          <button
-            type="button"
-            className="kakao-btn"
-            onClick={openKakaoConsult}
-          >
-            💬 카카오 상담
-          </button>
-
         </div>
 
         {result && (
+          <>
+            <div className="result-box">
 
-          <div className="result-box">
+              <h3>✅ 예상 견적 결과</h3>
 
-            <h3>✅ 예상 견적 결과</h3>
-
-            <p className="result-cost">
-              {result.cost.toLocaleString()}원
-            </p>
-
-            {form.ladder && (
-              <p
-                style={{
-                  color: "red",
-                  fontWeight: "bold",
-                  marginTop: "10px"
-                }}
-              >
-                ※ 사다리차 사용 시 추가금액이 발생할 수 있습니다.
+              <p className="result-cost">
+                {result.cost.toLocaleString()}원
               </p>
-            )}
 
-            <p className="result-sub">
-              {resultNotice}
-            </p>
+              {form.ladder && (
+                <p
+                  style={{
+                    color: "red",
+                    fontWeight: "bold",
+                    marginTop: "10px"
+                  }}
+                >
+                  ※ 사다리차 사용 시 추가금액이 발생할 수 있습니다.
+                </p>
+              )}
 
-          </div>
+              <p className="result-sub">
+                {resultNotice}
+              </p>
 
+              </div>
+
+                <button
+                type="button"
+                className="kakao-btn"
+                onClick={openKakaoConsult}
+              >
+                💬 카카오 상담
+              </button>
+          </>
         )}
 
         {/* 홈 버튼 */}

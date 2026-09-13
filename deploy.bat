@@ -15,9 +15,9 @@ echo =========================
 echo EC2 서버 업로드
 echo =========================
 
-scp -i jamong-key.pem -r client/dist/* ec2-user@13.209.7.247:/home/ec2-user/
+ssh -i jamong-key.pem ec2-user@3.37.35.203 "rm -rf /home/ec2-user/jamong-environment/client/dist && mkdir -p /home/ec2-user/jamong-environment/client/dist"
 
-ssh -i jamong-key.pem ec2-user@13.209.7.247 "sudo cp -r /home/ec2-user/* /usr/share/nginx/html/"
+scp -i jamong-key.pem -r client/dist/* ec2-user@3.37.35.203:/home/ec2-user/jamong-environment/client/dist/
 
 echo =========================
 echo 배포 완료
