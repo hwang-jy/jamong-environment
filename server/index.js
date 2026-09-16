@@ -10,7 +10,7 @@ import { saveMailLog } from "./services/mailLogService.js";
 import pool from "./db.js";
 import adminRoutes from "./routes/admin.js";
 import mailRoutes from "./routes/mailjmApi.js";
-import mailResendRoutes from "./routes/mailResend.js"; 
+import mailResendRoutes farom "./routes/mailResend.js"; 
 import { verifyMail } from "./services/mailService.js";
 import { createEstimatePDF } from "./services/pdfService.js";
 import { sendMail } from "./services/mailService.js";
@@ -33,7 +33,9 @@ app.use(cors({
   origin: [
     "http://localhost:5173",
     "http://13.209.7.247",
-    "https://jamongclean.co.kr"
+    "https://jamongclean.co.kr",
+    "capacitor://localhost",
+    "http://localhost"
   ]
 }));
 app.use(express.json());
