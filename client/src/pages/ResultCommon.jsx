@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { BASE_URL } from "../api";
 import { Link } from "react-router-dom";
 import "./ResultCommon.css";
 import BeforeAfter from "./BeforeAfter";
@@ -118,12 +119,13 @@ function ResultCommon({
     try {
 
       const { data } = await axios.post(
-        "/api/wastes/estimate",
+        `${BASE_URL}/api/wastes/estimate`,
         form
       );
 
+
       if (!data.ok) {
-        alert("견적 계산 실패");
+        alert("견적 계산 실패: " + JSON.stringify(data));
         setLoading(false);
         return;
       }
@@ -133,7 +135,10 @@ function ResultCommon({
     } catch (err) {
 
       console.error(err);
-      alert("처리 중 오류가 발생했습니다");
+        alert(
+         "처리 오류: " +
+          (err.response?.data?.error || err.message)
+        );
     }
 
     setLoading(false);
