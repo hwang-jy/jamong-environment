@@ -8,7 +8,7 @@ const pool = new Pool({
   user: process.env.DB_USER,       // .env에 설정된 값
   host: process.env.DB_HOST,
   database: process.env.DB_NAME,
-  password: process.env.DB_PASS,
+  password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT,
     ssl: {
     rejectUnauthorized: false,
