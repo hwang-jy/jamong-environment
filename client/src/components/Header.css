@@ -215,8 +215,9 @@
   background: linear-gradient(135deg, #ef4444, #dc2626);
   box-shadow: 0 3px 8px rgba(239,68,68,0.45);
 }
+
 /* =========================
-모바일 대응
+   모바일 대응
 ========================= */
 @media (max-width: 600px) {
   .header-slogan {
@@ -225,5 +226,14 @@
 
   .admin-btn-group {
     gap: 6px;
+  }
+
+  /* 아이폰 상단 시간 표시 영역 확보 */
+  @supports (-webkit-touch-callout: none) {
+    .main-header {
+      box-sizing: border-box;
+      height: 115px;
+      padding-top: 65px;
+    }
   }
 }
