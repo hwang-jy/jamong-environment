@@ -219,6 +219,9 @@
 /* =========================
    모바일 대응
 ========================= */
+/* =========================
+   모바일 대응
+========================= */
 @media (max-width: 600px) {
   .header-slogan {
     display: none;
@@ -228,12 +231,17 @@
     gap: 6px;
   }
 
-  /* 아이폰 상단 시간 표시 영역 확보 */
-  @supports (-webkit-touch-callout: none) {
-    .main-header {
-      box-sizing: border-box;
-      height: 115px;
-      padding-top: 65px;
-    }
+  /* Android / iPhone 상단 상태바·카메라 영역 확보 */
+  .main-header {
+    box-sizing: border-box;
+
+    /* 기본 Android 여백 */
+    padding-top: 30px;
+
+    /* iPhone Safe Area가 있으면 자동 추가 */
+    padding-top: max(30px, env(safe-area-inset-top));
+
+    /* 실제 헤더 50px + 위쪽 안전영역 */
+    height: 80px;
   }
 }
