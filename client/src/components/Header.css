@@ -219,10 +219,7 @@
 /* =========================
    모바일 대응
 ========================= */
-/* =========================
-   모바일 대응
-========================= */
-@media (max-width: 600px) {
+  @media (max-width: 600px) {
   .header-slogan {
     display: none;
   }
@@ -231,17 +228,53 @@
     gap: 6px;
   }
 
-  /* Android / iPhone 상단 상태바·카메라 영역 확보 */
   .main-header {
     box-sizing: border-box;
+    position: relative;
 
-    /* 기본 Android 여백 */
-    padding-top: 30px;
+    /* 상태바 공간은 흰색 */
+    padding-top: 42px;
+    height: 102px;
 
-    /* iPhone Safe Area가 있으면 자동 추가 */
-    padding-top: max(30px, env(safe-area-inset-top));
+    /* 상태바 자체는 흰색 */
+    background: #ffffff;
 
-    /* 실제 헤더 50px + 위쪽 안전영역 */
-    height: 80px;
+    /* 기존 그림자 제거 */
+    box-shadow: none;
+  }
+
+  /* 상태바 아래부터 실제 헤더 박스 */
+  .main-header::before {
+    content: "";
+    position: absolute;
+
+    top: 42px;
+    left: 8px;
+    right: 8px;
+    bottom: 0;
+
+    border: 1px solid rgba(27, 94, 32, 0.35);
+    border-radius: 8px;
+
+    background: linear-gradient(
+      135deg,
+      #e8f8f2,
+      #f4fbff
+    );
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+
+    z-index: 0;
+  }
+
+  .header-inner {
+    position: relative;
+    z-index: 1;
+  }
+}
+  @supports (padding-top: env(safe-area-inset-top)) {
+    .main-header {
+      padding-top: max(42px, env(safe-area-inset-top));
+    }
   }
 }
