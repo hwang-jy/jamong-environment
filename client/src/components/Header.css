@@ -219,62 +219,57 @@
 /* =========================
    모바일 대응
 ========================= */
-  @media (max-width: 600px) {
-  .header-slogan {
-    display: none;
-  }
+@media (max-width: 600px) {
+    .header-slogan {
+      display: none;
+    }
 
-  .admin-btn-group {
-    gap: 6px;
-  }
+    .admin-btn-group {
+      gap: 6px;
+    }
 
-  .main-header {
-    box-sizing: border-box;
-    position: relative;
-
-    /* 상태바 공간은 흰색 */
-    padding-top: 42px;
-    height: 102px;
-
-    /* 상태바 자체는 흰색 */
-    background: #ffffff;
-
-    /* 기존 그림자 제거 */
-    box-shadow: none;
-  }
-
-  /* 상태바 아래부터 실제 헤더 박스 */
-  .main-header::before {
-    content: "";
-    position: absolute;
-
-    top: 42px;
-    left: 8px;
-    right: 8px;
-    bottom: 0;
-
-    border: 1px solid rgba(27, 94, 32, 0.35);
-    border-radius: 8px;
-
-    background: linear-gradient(
-      135deg,
-      #e8f8f2,
-      #f4fbff
-    );
-
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-
-    z-index: 0;
-  }
-
-  .header-inner {
-    position: relative;
-    z-index: 1;
-  }
-}
-  @supports (padding-top: env(safe-area-inset-top)) {
     .main-header {
-      padding-top: max(42px, env(safe-area-inset-top));
+      box-sizing: border-box;
+      position: relative;
+
+      /* 상태바 공간은 흰색 */
+      padding-top: 42px;
+      height: 102px;
+
+      /* 상태바 자체는 흰색 */
+      background: #ffffff;
+
+      /* 기존 그림자 제거 */
+      box-shadow: none;
+    }
+
+    /* 상태바 아래부터 실제 헤더 박스 */
+    .main-header::before {
+      content: "";
+      position: absolute;
+
+      top: 42px;
+      left: 8px;
+      right: 8px;
+      bottom: 0;
+
+      border: 1px solid rgba(27, 94, 32, 0.35);
+      border-radius: 8px;
+
+      background: linear-gradient(
+        135deg,
+        #e8f8f2,
+        #f4fbff
+      );
+
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+
+      z-index: 0;
+    }
+
+    .header-inner {
+      position: relative;
+      z-index: 1;
     }
   }
-}
+  
