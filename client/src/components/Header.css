@@ -233,8 +233,8 @@
       position: relative;
 
       /* 상태바 공간은 흰색 */
-      padding-top: 42px;
-      height: 102px;
+      padding-top: 54px;
+      height: 114px;
 
       /* 상태바 자체는 흰색 */
       background: #ffffff;
@@ -248,7 +248,7 @@
       content: "";
       position: absolute;
 
-      top: 42px;
+      top: 54px;
       left: 8px;
       right: 8px;
       bottom: 0;

@@ -198,15 +198,22 @@
 ========================= */
 @media (max-width: 480px) {
   .sidebar {
-    top: 110px;
-    right: -94%;
-    width: 94%;
-    max-height: calc(100dvh - 126px);
+    top: 130px;
+    left: 16px;
+    right: auto;
+    width: calc(100% - 32px);
+    max-height: calc(100dvh - 146px);
     padding: 72px 18px 20px;
+    border-radius: 18px;
+
+    /* 닫혔을 때 화면 오른쪽에 배치 */
+    transform: translateX(calc(100% + 16px));
+    transition: transform 0.35s ease;
   }
 
   .sidebar.open {
-    right: 0;
+    right: auto;
+    transform: translateX(0);
   }
 
   .sidebar .sidebar-close {
