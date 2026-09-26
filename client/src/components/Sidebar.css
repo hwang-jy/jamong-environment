@@ -198,11 +198,11 @@
 ========================= */
 @media (max-width: 480px) {
   .sidebar {
-    top: max(58px, calc(env(safe-area-inset-top, 0px) + 12px));
+    top: 110px;
     right: -94%;
     width: 94%;
-    max-height: calc(100dvh - 70px);
-    padding: 58px 18px 20px;
+    max-height: calc(100dvh - 126px);
+    padding: 72px 18px 20px;
   }
 
   .sidebar.open {
@@ -212,12 +212,12 @@
   .sidebar .sidebar-close {
     top: 12px;
     right: 12px;
-    width: 44px;
-    height: 44px;
-    min-width: 44px;
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
     margin: 0;
     padding: 0;
-    font-size: 24px;
+    font-size: 30px;
     touch-action: manipulation;
   }
 
