@@ -234,7 +234,9 @@
 
   .license-box img {
     max-width: 100%;
-    max-height: 400px;
+    max-height: 250px;
+    width: auto;
+    object-fit: contain;
   }
 
   .sidebar button:not(.sidebar-close) {
