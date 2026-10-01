@@ -272,4 +272,41 @@
       z-index: 1;
     }
   }
+
+  /* iPad 등 태블릿의 상단 안전 영역 */
+@media (min-width: 601px) and (max-width: 1366px) {
+  .main-header {
+    --header-safe-top: max(30px, env(safe-area-inset-top, 0px));
+
+    box-sizing: border-box;
+    padding-top: var(--header-safe-top);
+    height: calc(60px + var(--header-safe-top));
+    background: #ffffff;
+    box-shadow: none;
+  }
+
+  .main-header::before {
+    content: "";
+    position: absolute;
+    top: var(--header-safe-top);
+    left: 8px;
+    right: 8px;
+    bottom: 0;
+
+    border: 1px solid rgba(27, 94, 32, 0.35);
+    border-radius: 8px;
+    background: linear-gradient(135deg, #e8f8f2, #f4fbff);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    z-index: 0;
+  }
+
+  .header-glow {
+    top: var(--header-safe-top);
+  }
+
+  .header-inner {
+    height: 60px;
+    z-index: 1;
+  }
+}
   
