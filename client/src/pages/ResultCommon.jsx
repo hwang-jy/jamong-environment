@@ -304,19 +304,24 @@ function ResultCommon({
             onClick={onSubmit}
             disabled={loading}
           >
-            {loading ? "계산 중..." : "💰 예상금액 계산"}
+            {loading ? "계산 중..." : "💰 예상금액 계산 및 견적 신청"}
           </button>
 
         </div>
 
-        {result && (
+         {result && (
           <>
             <div className="result-box">
+              <h3>✅ 견적 신청이 접수되었습니다</h3>
 
-              <h3>✅ 예상 견적 결과</h3>
+              <p>예상 견적 금액</p>
 
               <p className="result-cost">
                 {result.cost.toLocaleString()}원
+              </p>
+
+              <p className="result-sub">
+                담당자가 신청 내용을 확인한 후 연락드리겠습니다.
               </p>
 
               {form.ladder && (
@@ -334,8 +339,7 @@ function ResultCommon({
               <p className="result-sub">
                 {resultNotice}
               </p>
-
-              </div>
+            </div>
 
                 <button
                 type="button"
