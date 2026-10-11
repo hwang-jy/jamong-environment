@@ -35,7 +35,7 @@ app.use(cors({
     "http://13.209.7.247",
     "https://jamongclean.co.kr",
     "capacitor://localhost",
-    "http://localhost"
+    "http://localhost",
     "https://localhost" // Android Capacitor
   ]
 }));
