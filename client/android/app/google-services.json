@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "902435995835",
+    "project_id": "jamong-environment",
+    "storage_bucket": "jamong-environment.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:902435995835:android:c86bd26caa4ec0c7fee99e",
+        "android_client_info": {
+          "package_name": "com.jamong.clean"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD29vTNg47QAm4qwtHo6NSMCiG9H1jJ4ic"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:902435995835:android:9186c9f4d0f922d3fee99e",
+        "android_client_info": {
+          "package_name": "com.jamong.clean.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD29vTNg47QAm4qwtHo6NSMCiG9H1jJ4ic"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
